@@ -1,1 +1,1 @@
-# cgd_jam_2022
+# CGDJam2022
