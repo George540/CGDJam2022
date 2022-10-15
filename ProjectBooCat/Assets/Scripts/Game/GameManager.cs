@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _ghostPlayer;
     [SerializeField] private GhostController _ghostController;
+
+    [SerializeField] private List<GameObject> _aliveItems;
+    [SerializeField] private List<GameObject> _ghostItems;
+    
     private void Awake() 
     { 
         // If there is an instance, and it's not me, delete myself.
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
+            SetItemsVisibility(false);
         }
         else
         {
@@ -58,12 +63,19 @@ public class GameManager : MonoBehaviour
             
             _playerController.enabled = true;
             _alivePlayer.SetActive(true);
+            SetItemsVisibility(true);
         }
     }
 
     public void SwitchToGhostState()
     {
         SwitchPlayerState();
+    }
+
+    private void SetItemsVisibility(bool isAlive)
+    {
+        _aliveItems.ForEach(i => i.SetActive(isAlive));
+        _ghostItems.ForEach(i => i.SetActive(!isAlive));
     }
     
 }
