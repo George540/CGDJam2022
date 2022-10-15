@@ -60,4 +60,10 @@ public class GameManager : MonoBehaviour
             _alivePlayer.SetActive(true);
         }
     }
+
+    public void SwitchToGhostState()
+    {
+        SwitchPlayerState();
+    }
+    
 }
