@@ -1,48 +1,36 @@
 fileFormatVersion: 2
-guid: 591161ddccde24e77bc04c29ec2742eb
+guid: d7f3ba40c95624407a79329e1af8b953
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: Unity_MC_render_victory_0
+    second: Collectable_Collected_0
   - first:
       213: 21300002
-    second: Unity_MC_render_victory_1
+    second: Collectable_Collected_1
   - first:
       213: 21300004
-    second: Unity_MC_render_victory_2
+    second: Collectable_Collected_2
   - first:
       213: 21300006
-    second: Unity_MC_render_victory_3
+    second: Collectable_Collected_3
   - first:
       213: 21300008
-    second: Unity_MC_render_victory_4
+    second: Collectable_Collected_4
   - first:
       213: 21300010
-    second: Unity_MC_render_victory_5
+    second: Collectable_Collected_5
   - first:
       213: 21300012
-    second: Unity_MC_render_victory_6
+    second: Collectable_Collected_6
   - first:
       213: 21300014
-    second: Unity_MC_render_victory_7
+    second: Collectable_Collected_7
   - first:
       213: 21300016
-    second: Unity_MC_render_victory_8
-  - first:
-      213: 21300018
-    second: Unity_MC_render_victory_9
-  - first:
-      213: 21300020
-    second: Unity_MC_render_victory_10
-  - first:
-      213: 21300022
-    second: Unity_MC_render_victory_11
-  - first:
-      213: 21300024
-    second: Unity_MC_render_victory_12
+    second: Collectable_Collected_8
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -86,7 +74,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,6 +90,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -114,7 +103,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -126,7 +115,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -138,12 +127,24 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Unity_MC_render_victory_0
+      name: Collectable_Collected_0
       rect:
         serializedVersion: 2
         x: 0
@@ -157,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b12a2ce6d6e4a42498dc01fed89064f0
+      spriteID: ba126587c8ace49f3b2d7a8163b470ac
       internalID: 21300000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_1
+      name: Collectable_Collected_1
       rect:
         serializedVersion: 2
         x: 128
@@ -178,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a30526a974174482be72984dd49384e
+      spriteID: 15dce7243c5e7414fb1fe9929bfea44c
       internalID: 21300002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_2
+      name: Collectable_Collected_2
       rect:
         serializedVersion: 2
         x: 256
@@ -199,18 +200,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 511216a677c484482a6bfea3581d899c
+      spriteID: b556ded9e65fd46b3a2b1b010eaba039
       internalID: 21300004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_3
+      name: Collectable_Collected_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 252
+        x: 0
+        y: 126
         width: 128
         height: 126
       alignment: 0
@@ -220,18 +221,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e9beea06bfa74c65a661bad133de5f7
+      spriteID: 892dc7345a25346c59620720aa525811
       internalID: 21300006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_4
+      name: Collectable_Collected_4
       rect:
         serializedVersion: 2
-        x: 512
-        y: 252
+        x: 128
+        y: 126
         width: 128
         height: 126
       alignment: 0
@@ -241,17 +242,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e2af98489bf440f98be745eb9222fe8
+      spriteID: 3b32313a386c74e5f907b6fc66232d7c
       internalID: 21300008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_5
+      name: Collectable_Collected_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 126
         width: 128
         height: 126
@@ -262,98 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb8d88138010b4124939467b6463d941
+      spriteID: 0eea1aeb3ee424045aeeee627664cb63
       internalID: 21300010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 126
-        width: 128
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b7ecdce93c684e9383e069e279a912d
-      internalID: 21300012
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Unity_MC_render_victory_7
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 126
-        width: 128
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a478c3807ab3412cac4381c64bb0317
-      internalID: 21300014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Unity_MC_render_victory_8
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 126
-        width: 128
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffd3e7f8f44ab4079a739d961e191de7
-      internalID: 21300016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Unity_MC_render_victory_9
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 126
-        width: 128
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fad35774cf0d4abd9c515cc7fb09847
-      internalID: 21300018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Unity_MC_render_victory_10
+      name: Collectable_Collected_6
       rect:
         serializedVersion: 2
         x: 0
@@ -367,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e78571b0228c94344ad42147c725fc58
-      internalID: 21300020
+      spriteID: 79810ff5da1d64c48a8148c85fea6822
+      internalID: 21300012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_11
+      name: Collectable_Collected_7
       rect:
         serializedVersion: 2
         x: 128
@@ -388,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9a723e33dbf9472b9c8362f847c726d
-      internalID: 21300022
+      spriteID: 43d24bf78616c482ea7af52fbdaededc
+      internalID: 21300014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unity_MC_render_victory_12
+      name: Collectable_Collected_8
       rect:
         serializedVersion: 2
         x: 256
@@ -409,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 030ab31acfd234d67b2bf7b894bd0007
-      internalID: 21300024
+      spriteID: 320555581fd434124a91e7c5df6a1bc3
+      internalID: 21300016
       vertices: []
       indices: 
       edges: []
@@ -418,7 +335,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d4ed9043e98aa4e829208b78ef0f32ad
+    spriteID: f820f6647e7ae435dab69606619639fd
     internalID: 0
     vertices: []
     indices: 
@@ -426,19 +343,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Unity_MC_render_victory_11: 21300022
-      Unity_MC_render_victory_7: 21300014
-      Unity_MC_render_victory_10: 21300020
-      Unity_MC_render_victory_2: 21300004
-      Unity_MC_render_victory_12: 21300024
-      Unity_MC_render_victory_3: 21300006
-      Unity_MC_render_victory_5: 21300010
-      Unity_MC_render_victory_1: 21300002
-      Unity_MC_render_victory_4: 21300008
-      Unity_MC_render_victory_8: 21300016
-      Unity_MC_render_victory_0: 21300000
-      Unity_MC_render_victory_6: 21300012
-      Unity_MC_render_victory_9: 21300018
+      Collectable_Collected_1: 21300002
+      Collectable_Collected_2: 21300004
+      Collectable_Collected_3: 21300006
+      Collectable_Collected_0: 21300000
+      Collectable_Collected_4: 21300008
+      Collectable_Collected_8: 21300016
+      Collectable_Collected_7: 21300014
+      Collectable_Collected_5: 21300010
+      Collectable_Collected_6: 21300012
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
