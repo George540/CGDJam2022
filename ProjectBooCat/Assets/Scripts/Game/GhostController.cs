@@ -6,31 +6,37 @@ using UnityEngine;
 public class GhostController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _acceleration;
     [SerializeField] private float _maxSpeed;
+    private Vector2 _movementDirection;
+
+    private void Update()
+    {
+        UpdateDirection();
+    }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            _rigidbody2D.AddForce(_acceleration * Vector2.up * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            _rigidbody2D.AddForce(_acceleration * Vector2.left * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            _rigidbody2D.AddForce(_acceleration * Vector2.down * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _rigidbody2D.AddForce(_acceleration * Vector2.right * Time.deltaTime);
-        }
+        _movementDirection.x = Input.GetAxis("Horizontal");
+        _movementDirection.y = Input.GetAxis("Vertical");
+        _rigidbody2D.AddForce(_movementDirection * _acceleration * Time.deltaTime);
 
         if (_rigidbody2D.velocity.magnitude > _maxSpeed)
         {
             _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
+        }
+    }
+
+    void UpdateDirection()
+    {
+        if (_movementDirection.x > 0.001f)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (_movementDirection.x < -0.001f)
+        {
+            _spriteRenderer.flipX = true;
         }
     }
 }
