@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public bool IsGhost;
     [SerializeField] private GameObject _alivePlayer;
     [SerializeField] private PlayerController _playerController;
 
@@ -27,7 +28,9 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Instance = this; 
-        } 
+        }
+
+        IsGhost = false;
     }
     
     // Start is called before the first frame update
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
             SetItemsVisibility(false);
+            SetCharacterStateCheck(false);
         }
         else
         {
@@ -64,6 +68,7 @@ public class GameManager : MonoBehaviour
             _playerController.enabled = true;
             _alivePlayer.SetActive(true);
             SetItemsVisibility(true);
+            SetCharacterStateCheck(true);
         }
     }
 
@@ -76,6 +81,11 @@ public class GameManager : MonoBehaviour
     {
         _aliveItems.ForEach(i => i.SetActive(isAlive));
         _ghostItems.ForEach(i => i.SetActive(!isAlive));
+    }
+
+    private void SetCharacterStateCheck(bool isGhost)
+    {
+        IsGhost = isGhost;
     }
     
 }
