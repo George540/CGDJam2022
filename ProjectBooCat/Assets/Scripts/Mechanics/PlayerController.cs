@@ -140,8 +140,23 @@ namespace Platformer.Mechanics
         {
             _isAlive = ctrl;
             controlEnabled = ctrl;
-            _rigidbody2D.simulated = ctrl;
-            collider2d.enabled = ctrl;
+            if (!ctrl)
+            {
+                if (_isFacingRight)
+                {
+                    animator.Play("Impact Right");
+                }
+                else
+                {
+                    animator.Play("Impact Left");
+                }
+            }
+            else
+            {
+                animator.Play("Idle Right");
+            }
+            //_rigidbody2D.simulated = ctrl;
+            //collider2d.enabled = ctrl;
         }
         
         private void OnTriggerEnter2D(Collider2D col)
