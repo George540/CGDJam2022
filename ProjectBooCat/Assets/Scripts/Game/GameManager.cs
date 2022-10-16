@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Platformer.Mechanics;
@@ -16,9 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostPlayer;
     [SerializeField] private GhostController _ghostController;
 
-    [SerializeField] private List<GameObject> _aliveItems;
-    [SerializeField] private List<GameObject> _ghostItems;
-    
+    public List<GameObject> _aliveItems;
+    public List<GameObject> _ghostItems;
+
+    public int _keys;
 
     private void Awake() 
     { 
@@ -36,6 +38,12 @@ public class GameManager : MonoBehaviour
         IsGhost = false;
     }
 
+    private void Start()
+    {
+        _ghostPlayer.transform.position = _alivePlayer.transform.position;
+        _ghostPlayer.transform.parent = _alivePlayer.transform;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -48,41 +56,27 @@ public class GameManager : MonoBehaviour
         if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 2f
             && Input.GetKeyDown(KeyCode.E))
         {
-            BecomeAlive();
+            SwitchPlayerState();
         }
     }
 
     private void SwitchPlayerState()
     {
-        if (_alivePlayer.activeSelf)
+        if (!IsGhost)
         {
-            _playerController.enabled = false;
+            _playerController.SetControlled(false);
             TeleportPlayer();
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
+            _ghostPlayer.transform.parent = null;
             SetItemsVisibility(false);
-            SetCharacterStateCheck(false);
+            IsGhost = true;
         }
         else
         {
-            _ghostPlayer.SetActive(false);
-            _ghostController.enabled = false;
-
-            _playerController.enabled = true;
-            SetItemsVisibility(true);
-            SetCharacterStateCheck(true);
+            _ghostController.Desummon();
         }
-    }
-
-    public void BecomeAlive()
-    {
-        _ghostPlayer.SetActive(false);
-        _ghostController.enabled = false;
-
-        _playerController.enabled = true;
-        SetItemsVisibility(true);
-        SetCharacterStateCheck(true);
     }
 
     public void SwitchToGhostState()
@@ -90,10 +84,17 @@ public class GameManager : MonoBehaviour
         SwitchPlayerState();
     }
 
-    private void SetItemsVisibility(bool isAlive)
+    public void SetItemsVisibility(bool isAlive)
     {
-        _aliveItems.ForEach(i => i.SetActive(isAlive));
-        _ghostItems.ForEach(i => i.SetActive(!isAlive));
+        if (_aliveItems.Count > 0)
+        {
+            _aliveItems.ForEach(i => i.SetActive(isAlive));
+        }
+
+        if (_ghostItems.Count > 0)
+        {
+            _ghostItems.ForEach(i => i.SetActive(!isAlive));
+        }
     }
 
     private void SetCharacterStateCheck(bool isGhost)
@@ -111,4 +112,18 @@ public class GameManager : MonoBehaviour
         _alivePlayer.transform.position = spawnPoint.transform.position;
     }
 
+    public void AddKey()
+    {
+        _keys++;
+    }
+
+    public void AttachGhostToPlayer()
+    {
+        _ghostController.enabled = false;
+        _ghostPlayer.SetActive(false);
+
+        _playerController.SetControlled(true);
+        SetItemsVisibility(true);
+        IsGhost = false;
+    }
 }

@@ -7,11 +7,12 @@ using UnityEngine.UIElements;
 public class LaserTrap : MonoBehaviour
 {
     [SerializeField] private LineRenderer Laser;
-    [SerializeField] private SpriteRenderer LaserSprite;
     [SerializeField] private EdgeCollider2D Hitbox;
     private List<Vector2> Points;
     private GameManager _gameManager;
     public bool hitPlayer;
+
+    public LayerMask _layerMask;
     private enum HitState
     {
         Hit, NotHit
@@ -26,29 +27,20 @@ public class LaserTrap : MonoBehaviour
         CurrentState = HitState.NotHit;
         _gameManager = GameManager.Instance;
         hitPlayer = false;
-        LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);
+        //LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);
     }
 
     private void Update()
     {
-        if (hitPlayer)
-            this.gameObject.SetActive(false);
-    }
-
-    private void FixedUpdate()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
-        if (CurrentState == HitState.NotHit)
+        var transform1 = transform;
+        var position = transform1.position;
+        RaycastHit2D hit = Physics2D.Raycast(position,  -transform1.up, 10f);
+        if (hit)
         {
-            if (hit.collider != null)
-            {
-                var hitPosition = hit.transform.position;
-                CurrentState = HitState.Hit;
-                Laser.SetPosition(1, hitPosition);
-                Points.Add(Laser.GetPosition(1));
-                var allPoints = Points.ToArray();
-                Hitbox.points = allPoints;
-            }
+            var size = Mathf.Abs(hit.transform.position.magnitude - position.magnitude);
+            Debug.DrawRay(position, -transform1.up * size, Color.red);
+            Laser.SetPosition(0, position);
+            Laser.SetPosition(1, hit.transform.position);
         }
     }
 }

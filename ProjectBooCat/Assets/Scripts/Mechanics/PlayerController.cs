@@ -29,12 +29,15 @@ namespace Platformer.Mechanics
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
+        public Rigidbody2D _rigidbody2D;
         /*internal new*/ public Collider2D collider2d;
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
         bool jump;
+        public bool _isAlive;
+        private bool _isFacingRight;
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
@@ -58,7 +61,7 @@ namespace Platformer.Mechanics
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                else if (Input.GetButtonDown("Jump"))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
@@ -119,14 +122,60 @@ namespace Platformer.Mechanics
             }
 
             if (move.x > 0.01f)
-                spriteRenderer.flipX = false;
+            {
+                _isFacingRight = true;
+            }
             else if (move.x < -0.01f)
-                spriteRenderer.flipX = true;
+            {
+                _isFacingRight = false;
+            }
 
             animator.SetBool("grounded", IsGrounded);
-            animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+            animator.SetFloat("velocityX", velocity.x / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+        public void SetControlled(bool ctrl)
+        {
+            _isAlive = ctrl;
+            controlEnabled = ctrl;
+            if (!ctrl)
+            {
+                if (_isFacingRight)
+                {
+                    animator.Play("Impact Right");
+                }
+                else
+                {
+                    animator.Play("Impact Left");
+                }
+            }
+            else
+            {
+                animator.Play("Idle Right");
+            }
+            //_rigidbody2D.simulated = ctrl;
+            //collider2d.enabled = ctrl;
+        }
+        
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Collectible"))
+            {
+                GameManager.Instance.AddKey();
+                if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
+                {
+                    GameManager.Instance._aliveItems.Remove(col.gameObject);
+                }
+                else if (col.gameObject.layer == 9 && GameManager.Instance._ghostItems.Count > 0) // 9 = GhostItems
+                {
+                    GameManager.Instance._ghostItems.Remove(col.gameObject);
+                }
+                Destroy(col.gameObject);
+                Debug.Log("Collected Key");
+                animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+            }
         }
 
         public enum JumpState

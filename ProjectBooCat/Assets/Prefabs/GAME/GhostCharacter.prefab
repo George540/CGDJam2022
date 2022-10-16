@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5920730425688697346}
   - component: {fileID: 5920730425688697357}
   - component: {fileID: 5920730425688697356}
-  - component: {fileID: 1898766519}
   - component: {fileID: 4391540113957028200}
+  - component: {fileID: 1898766519}
   m_Layer: 7
   m_Name: GhostCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.19}
   m_EdgeRadius: 0
+--- !u!114 &4391540113957028200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5920730425688697359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8bba49a42e37e4dad9c624e6966228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1898766519
 Animator:
   serializedVersion: 4
@@ -172,15 +184,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4391540113957028200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920730425688697359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8bba49a42e37e4dad9c624e6966228, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
