@@ -20,7 +20,7 @@ namespace Platformer.Mechanics
             _gameManager = GameManager.Instance;
         }
 
-        void OnTriggerEnter2D(Collider2D collider)
+        void OnTriggerStay2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
             if (p != null)

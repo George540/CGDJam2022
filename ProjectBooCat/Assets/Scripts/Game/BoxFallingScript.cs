@@ -14,6 +14,7 @@ public class BoxFallingScript : MonoBehaviour
     private float currentTime = 0f;
     public bool hitPlayer;
     private GameManager _gameManager;
+    private SpriteRenderer _currentBoxInstance;
 
     private void Start()
     {
@@ -45,8 +46,16 @@ public class BoxFallingScript : MonoBehaviour
 
     private void SpawnBox()
     {
-        Instantiate(Box, BoxCapsule.transform.position, Quaternion.identity);
+        _currentBoxInstance = Instantiate(Box, BoxCapsule.transform.position, Quaternion.identity);
+        StartCoroutine("PlayAcidAnimation");
         currentTime = 0f;
+    }
+
+    private IEnumerator PlayAcidAnimation()
+    {
+        yield return new WaitForSeconds(0.87f);
+        _currentBoxInstance.GetComponent<Box>().Rb.gravityScale =
+            _currentBoxInstance.GetComponent<Box>().RbGravityScale;
     }
 
 }
