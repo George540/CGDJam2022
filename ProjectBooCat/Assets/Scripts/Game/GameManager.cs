@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool IsGhost;
+
+    private GameObject spawnPoint;
     [SerializeField] private GameObject _alivePlayer;
     [SerializeField] private PlayerController _playerController;
 
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> _aliveItems;
     [SerializeField] private List<GameObject> _ghostItems;
     
+
     private void Awake() 
     { 
         // If there is an instance, and it's not me, delete myself.
@@ -32,12 +35,6 @@ public class GameManager : MonoBehaviour
 
         IsGhost = false;
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -52,8 +49,9 @@ public class GameManager : MonoBehaviour
     {
         if (_alivePlayer.activeSelf)
         {
+            
             _playerController.enabled = false;
-            _alivePlayer.SetActive(false);
+            TeleportPlayer();
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
@@ -66,7 +64,6 @@ public class GameManager : MonoBehaviour
             _ghostController.enabled = false;
             
             _playerController.enabled = true;
-            _alivePlayer.SetActive(true);
             SetItemsVisibility(true);
             SetCharacterStateCheck(true);
         }
@@ -88,4 +85,14 @@ public class GameManager : MonoBehaviour
         IsGhost = isGhost;
     }
     
+    public void SwitchSpawnPoint(GameObject newSpawnPoint)
+    {
+        spawnPoint = newSpawnPoint;
+    }
+
+    public void TeleportPlayer()
+    {
+        _alivePlayer.transform.position = spawnPoint.transform.position;
+    }
+
 }

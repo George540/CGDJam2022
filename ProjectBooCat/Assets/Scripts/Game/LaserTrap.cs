@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class LaserTrap : MonoBehaviour
 {
     [SerializeField] private LineRenderer Laser;
+    [SerializeField] private SpriteRenderer LaserSprite;
     [SerializeField] private EdgeCollider2D Hitbox;
     private List<Vector2> Points;
     private GameManager _gameManager;
@@ -25,6 +26,7 @@ public class LaserTrap : MonoBehaviour
         CurrentState = HitState.NotHit;
         _gameManager = GameManager.Instance;
         hitPlayer = false;
+        LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);
     }
 
     private void Update()
