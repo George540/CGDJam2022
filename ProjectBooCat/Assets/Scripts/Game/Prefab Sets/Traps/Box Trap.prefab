@@ -75,6 +75,7 @@ MonoBehaviour:
   BoxCapsule: {fileID: 8296528782908739342}
   NumberOfBoxes: 2
   SpawnInterval: 2
+  _collider2D: {fileID: 0}
   hitPlayer: 0
 --- !u!1 &6120766753462217231
 GameObject:

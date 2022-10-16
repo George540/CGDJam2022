@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Platformer.Mechanics;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> _ghostItems;
 
     public int _keys;
+    public List<RoomManager> _rooms;
+    public RoomManager _currentRoom;
+    public int _currentRoomId;
 
     private void Awake() 
     { 
@@ -42,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
+        _currentRoom = _rooms[_currentRoomId];
     }
 
     // Update is called once per frame
@@ -115,6 +120,13 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         _keys++;
+    }
+
+    public void MoveToOtherRoom()
+    {
+        _currentRoomId++;
+        _currentRoom = _rooms[_currentRoomId];
+        _currentRoom.MoveCamera();
     }
 
     public void AttachGhostToPlayer()
