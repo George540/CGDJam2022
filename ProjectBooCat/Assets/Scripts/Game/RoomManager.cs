@@ -34,8 +34,6 @@ public class RoomManager : MonoBehaviour
 
     public void MoveCamera()
     {
-        if (isTerminal) return;
-        
         if (Camera.main is not null) Camera.main.transform.position = cameraTransform.position;
     }
     
