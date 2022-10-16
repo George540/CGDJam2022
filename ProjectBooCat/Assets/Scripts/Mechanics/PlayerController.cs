@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Gameplay;
@@ -182,9 +183,18 @@ namespace Platformer.Mechanics
                     GameManager.Instance._currentRoom.OpenDoor();
                 }
             }
+        }
 
-            if (col.gameObject.TryGetComponent<RoomManager>(out var door))
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent<RoomManager>(out var door))
             {
+                if (door.isTerminal)
+                {
+                    // Load credits scene
+                    Debug.Log("GAME OVER. YOU WIN!");
+                }
+                
                 if (door.isDoorOpen)
                 {
                     GameManager.Instance.MoveToOtherRoom();

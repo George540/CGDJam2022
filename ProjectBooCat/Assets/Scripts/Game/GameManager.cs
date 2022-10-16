@@ -131,6 +131,8 @@ public class GameManager : MonoBehaviour
 
     public void AttachGhostToPlayer()
     {
+        _ghostPlayer.transform.position = _alivePlayer.transform.position;
+        _ghostPlayer.transform.parent = _alivePlayer.transform;
         _ghostController.enabled = false;
         _ghostPlayer.SetActive(false);
 

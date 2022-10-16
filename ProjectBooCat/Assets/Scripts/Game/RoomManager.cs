@@ -9,7 +9,8 @@ public class RoomManager : MonoBehaviour
     public bool isDoorOpen;
     public Transform cameraTransform;
     public Transform PlayerSpawnTransform;
-    
+    public bool isTerminal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +25,16 @@ public class RoomManager : MonoBehaviour
 
     public void OpenDoor()
     {
+        if (isTerminal) return;
+        
         _doorAnimator.Play("Door Open");
         isDoorOpen = true;
     }
 
     public void MoveCamera()
     {
+        if (isTerminal) return;
+        
         if (Camera.main is not null) Camera.main.transform.position = cameraTransform.position;
     }
     

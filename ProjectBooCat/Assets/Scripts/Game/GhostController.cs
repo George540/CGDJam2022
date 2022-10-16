@@ -71,6 +71,7 @@ public class GhostController : MonoBehaviour
         if (col.gameObject.CompareTag("Collectible"))
         {
             GameManager.Instance.AddKey();
+            GameManager.Instance._currentRoom._keysToUnlock--;
             if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
             {
                 GameManager.Instance._aliveItems.Remove(col.gameObject);
@@ -82,6 +83,11 @@ public class GhostController : MonoBehaviour
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
             _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+            
+            if (GameManager.Instance._currentRoom._keysToUnlock == 0)
+            {
+                GameManager.Instance._currentRoom.OpenDoor();
+            }
         }
     }
 
