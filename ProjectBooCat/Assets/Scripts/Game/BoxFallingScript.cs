@@ -11,9 +11,11 @@ public class BoxFallingScript : MonoBehaviour
     [SerializeField] private SpriteRenderer BoxCapsule;
     [SerializeField] private float NumberOfBoxes;
     [SerializeField] private float SpawnInterval;
+    [SerializeField] private Collider2D _collider2D;
     private float currentTime = 0f;
     public bool hitPlayer;
     private GameManager _gameManager;
+    private SpriteRenderer _currentBoxInstance;
 
     private void Start()
     {
@@ -24,8 +26,8 @@ public class BoxFallingScript : MonoBehaviour
 
     private void Update()
     {
-        if(hitPlayer)
-            this.gameObject.SetActive(false);
+        if (hitPlayer)
+            _collider2D.enabled = false;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -45,8 +47,16 @@ public class BoxFallingScript : MonoBehaviour
 
     private void SpawnBox()
     {
-        Instantiate(Box, BoxCapsule.transform.position, Quaternion.identity);
+        _currentBoxInstance = Instantiate(Box, BoxCapsule.transform.position, Quaternion.identity);
+        StartCoroutine("PlayAcidAnimation");
         currentTime = 0f;
+    }
+
+    private IEnumerator PlayAcidAnimation()
+    {
+        yield return new WaitForSeconds(0.87f);
+        _currentBoxInstance.GetComponent<Box>().Rb.gravityScale =
+            _currentBoxInstance.GetComponent<Box>().RbGravityScale;
     }
 
 }

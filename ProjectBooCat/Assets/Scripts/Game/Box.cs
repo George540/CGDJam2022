@@ -1,18 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Box : MonoBehaviour
 {
     private GameManager _gameManager;
+    public float RbGravityScale;
 
     [SerializeField] private BoxFallingScript BoxTrap;
-    
-    // Start is called before the first frame update
+    [SerializeField] public Rigidbody2D Rb;
+
     void Start()
     {
         _gameManager = GameManager.Instance;
+        RbGravityScale = Rb.gravityScale;
+        Rb.gravityScale = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

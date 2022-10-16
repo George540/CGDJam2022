@@ -14,18 +14,20 @@ namespace Platformer.Mechanics
     public class DeathZone : MonoBehaviour
     {
         private GameManager _gameManager;
+        [SerializeField] private Collider2D _collider2D;
 
         private void Start()
         {
             _gameManager = GameManager.Instance;
         }
 
-        void OnTriggerEnter2D(Collider2D collider)
+        void OnTriggerStay2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
             if (p != null)
             {
                 _gameManager.SwitchToGhostState();
+                _collider2D.enabled = false;
             }
         }
     }
