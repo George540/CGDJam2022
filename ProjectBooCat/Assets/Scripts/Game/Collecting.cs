@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Collecting : MonoBehaviour
@@ -9,7 +8,9 @@ public class Collecting : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Collectible"))
         {
-            
+            GameManager.Instance.AddKey();
+            Destroy(col.gameObject);
+            Debug.Log("Collected Key");
         }
     }
 }

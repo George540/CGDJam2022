@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Platformer.Mechanics;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _aliveItems;
     [SerializeField] private List<GameObject> _ghostItems;
+
+    public int _keys;
     
 
     private void Awake() 
@@ -36,6 +39,11 @@ public class GameManager : MonoBehaviour
         IsGhost = false;
     }
 
+    private void Start()
+    {
+        AttachGhostToPlayer();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -48,40 +56,43 @@ public class GameManager : MonoBehaviour
         if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 2f
             && Input.GetKeyDown(KeyCode.E))
         {
-            BecomeAlive();
+            SwitchPlayerState();
         }
     }
 
     private void SwitchPlayerState()
     {
-        if (_alivePlayer.activeSelf)
+        if (!IsGhost)
         {
-            _playerController.enabled = false;
+            _playerController.SetControlled(false);
             TeleportPlayer();
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
-            SetItemsVisibility(false);
-            SetCharacterStateCheck(false);
+            _ghostPlayer.transform.parent = null;
+            //SetItemsVisibility(false);
+            IsGhost = true;
         }
         else
         {
-            _ghostPlayer.SetActive(false);
+            AttachGhostToPlayer();
             _ghostController.enabled = false;
+            _ghostPlayer.SetActive(false);
 
-            _playerController.enabled = true;
-            SetItemsVisibility(true);
-            SetCharacterStateCheck(true);
+            _playerController.SetControlled(true);
+            //SetItemsVisibility(true);
+            IsGhost = false;
         }
     }
 
     public void BecomeAlive()
     {
+        AttachGhostToPlayer();
         _ghostPlayer.SetActive(false);
         _ghostController.enabled = false;
 
         _playerController.enabled = true;
-        SetItemsVisibility(true);
+        //SetItemsVisibility(true);
         SetCharacterStateCheck(true);
     }
 
@@ -111,4 +122,14 @@ public class GameManager : MonoBehaviour
         _alivePlayer.transform.position = spawnPoint.transform.position;
     }
 
+    public void AddKey()
+    {
+        _keys++;
+    }
+
+    private void AttachGhostToPlayer()
+    {
+        _ghostPlayer.transform.position = _alivePlayer.transform.position;
+        _ghostPlayer.transform.parent = _alivePlayer.transform;
+    }
 }

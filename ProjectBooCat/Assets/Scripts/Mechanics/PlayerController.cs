@@ -29,12 +29,14 @@ namespace Platformer.Mechanics
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
+        public Rigidbody2D _rigidbody2D;
         /*internal new*/ public Collider2D collider2d;
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
         bool jump;
+        public bool _isAlive;
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
@@ -127,6 +129,14 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+        public void SetControlled(bool ctrl)
+        {
+            _isAlive = ctrl;
+            controlEnabled = ctrl;
+            _rigidbody2D.simulated = ctrl;
+            collider2d.enabled = ctrl;
         }
 
         public enum JumpState

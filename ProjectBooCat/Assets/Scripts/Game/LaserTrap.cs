@@ -7,11 +7,12 @@ using UnityEngine.UIElements;
 public class LaserTrap : MonoBehaviour
 {
     [SerializeField] private LineRenderer Laser;
-    [SerializeField] private SpriteRenderer LaserSprite;
     [SerializeField] private EdgeCollider2D Hitbox;
     private List<Vector2> Points;
     private GameManager _gameManager;
     public bool hitPlayer;
+
+    public LayerMask _layerMask;
     private enum HitState
     {
         Hit, NotHit
@@ -26,7 +27,7 @@ public class LaserTrap : MonoBehaviour
         CurrentState = HitState.NotHit;
         _gameManager = GameManager.Instance;
         hitPlayer = false;
-        LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);
+        //LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);
     }
 
     private void Update()
@@ -37,18 +38,11 @@ public class LaserTrap : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
-        if (CurrentState == HitState.NotHit)
-        {
-            if (hit.collider != null)
-            {
-                var hitPosition = hit.transform.position;
-                CurrentState = HitState.Hit;
-                Laser.SetPosition(1, hitPosition);
-                Points.Add(Laser.GetPosition(1));
-                var allPoints = Points.ToArray();
-                Hitbox.points = allPoints;
-            }
-        }
+        var transform1 = transform;
+        var position = transform1.position;
+        Debug.DrawRay(position, -transform1.up * 10f, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(position,  -transform.up, 10f);
+        Laser.SetPosition(0, transform.position);
+        Laser.SetPosition(1, hit.transform.position);
     }
 }
