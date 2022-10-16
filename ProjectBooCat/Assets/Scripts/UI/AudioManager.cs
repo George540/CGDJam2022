@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
-    [SerializeField] AudioSource gameStart, select, confirm;
+    [SerializeField] AudioSource gameStart;
 
     public void SetVolume(float volume)
     {
@@ -16,15 +16,5 @@ public class AudioManager : MonoBehaviour
     public void GameStart()
     {
         gameStart.Play();
-    }
-
-    public void PlaySelect()
-    {
-        select.Play();
-    }
-
-    public void PlayConfirm()
-    {
-        confirm.Play();
     }
 }
