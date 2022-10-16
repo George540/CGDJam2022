@@ -159,7 +159,7 @@ namespace Platformer.Mechanics
                 }
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
-                //_animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+                animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
             }
         }
 

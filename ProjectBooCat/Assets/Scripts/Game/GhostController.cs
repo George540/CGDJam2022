@@ -71,11 +71,11 @@ public class GhostController : MonoBehaviour
         if (col.gameObject.CompareTag("Collectible"))
         {
             GameManager.Instance.AddKey();
-            if (col.gameObject.layer == 8) // 8 = AliveItems
+            if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
             {
                 GameManager.Instance._aliveItems.Remove(col.gameObject);
             }
-            else if (col.gameObject.layer == 9) // 9 = GhostItems
+            else if (col.gameObject.layer == 9 && GameManager.Instance._ghostItems.Count > 0) // 9 = GhostItems
             {
                 GameManager.Instance._ghostItems.Remove(col.gameObject);
             }
