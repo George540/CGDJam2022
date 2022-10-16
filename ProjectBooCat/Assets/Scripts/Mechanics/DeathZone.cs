@@ -14,6 +14,7 @@ namespace Platformer.Mechanics
     public class DeathZone : MonoBehaviour
     {
         private GameManager _gameManager;
+        [SerializeField] private Collider2D _collider2D;
 
         private void Start()
         {
@@ -26,6 +27,7 @@ namespace Platformer.Mechanics
             if (p != null)
             {
                 _gameManager.SwitchToGhostState();
+                _collider2D.enabled = false;
             }
         }
     }
