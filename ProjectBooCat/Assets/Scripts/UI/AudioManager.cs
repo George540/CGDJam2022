@@ -9,6 +9,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource sfx, aliveMusic, ghostMusic;
     [SerializeField] AudioClip gameStart, openDoor;
 
+    public void Play(AudioClip clip)
+    {
+        sfx.PlayOneShot(clip);
+    }
+
     public void GameStart()
     {
         sfx.PlayOneShot(gameStart);

@@ -123,6 +123,7 @@ MonoBehaviour:
   RbGravityScale: 0
   BoxTrap: {fileID: 0}
   Rb: {fileID: -3935760061485972686}
+  droplet: {fileID: 8300000, guid: b1118768244098047b72ca1ba62f67e5, type: 3}
 --- !u!50 &-3935760061485972686
 Rigidbody2D:
   serializedVersion: 4
