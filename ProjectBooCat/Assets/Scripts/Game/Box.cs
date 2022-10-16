@@ -11,6 +11,7 @@ public class Box : MonoBehaviour
 
     [SerializeField] private BoxFallingScript BoxTrap;
     [SerializeField] public Rigidbody2D Rb;
+    [SerializeField] AudioClip droplet;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class Box : MonoBehaviour
             Debug.Log("hit player");
             BoxTrap.hitPlayer = true;
             _gameManager.SwitchToGhostState();
+            FindObjectOfType<AudioManager>().Play(droplet);
             Destroy(this.gameObject);
         }
     }

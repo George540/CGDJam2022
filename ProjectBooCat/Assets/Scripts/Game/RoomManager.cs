@@ -28,6 +28,7 @@ public class RoomManager : MonoBehaviour
         if (isTerminal) return;
         
         _doorAnimator.Play("Door Open");
+        FindObjectOfType<AudioManager>().OpenDoor();
         isDoorOpen = true;
     }
 

@@ -24,6 +24,7 @@ namespace Platformer.Mechanics
         void OnTriggerStay2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
+            GetComponent<AudioSource>().Play();
             if (p != null)
             {
                 _gameManager.SwitchToGhostState();

@@ -495,7 +495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 818935bee92fa314985a671e22ea319a, type: 2}
-  gameStart: {fileID: 761744954}
+  sfx: {fileID: 761744954}
+  aliveMusic: {fileID: 0}
+  ghostMusic: {fileID: 0}
+  gameStart: {fileID: 8300000, guid: 7b6b18afb68625245a62242c9a6d513e, type: 3}
+  openDoor: {fileID: 0}
 --- !u!82 &761744957
 AudioSource:
   m_ObjectHideFlags: 0
