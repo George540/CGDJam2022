@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public RoomManager _currentRoom;
     public int _currentRoomId;
 
+    private AudioManager _audioManager;
+
     private void Awake() 
     { 
         // If there is an instance, and it's not me, delete myself.
@@ -63,10 +65,20 @@ public class GameManager : MonoBehaviour
         {
             SwitchPlayerState();
         }
+
+        if(!_audioManager)
+        {
+            _audioManager = FindObjectOfType<AudioManager>();
+        }
     }
 
     private void SwitchPlayerState()
     {
+        if (_audioManager)
+        {
+            StartCoroutine(_audioManager.Switch(!IsGhost));
+        }
+
         if (!IsGhost)
         {
             _playerController.SetControlled(false);
@@ -77,10 +89,16 @@ public class GameManager : MonoBehaviour
             _ghostPlayer.transform.parent = null;
             SetItemsVisibility(false);
             IsGhost = true;
+
+            if (_playerController.GetComponent<AudioSource>() && _playerController.deathAudio)
+                _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.deathAudio);
         }
         else
         {
             _ghostController.Desummon();
+
+            if (_playerController.GetComponent<AudioSource>() && _playerController.reviveAudio)
+                _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.reviveAudio);
         }
     }
 

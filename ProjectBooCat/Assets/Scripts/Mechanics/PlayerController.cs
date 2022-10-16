@@ -15,8 +15,9 @@ namespace Platformer.Mechanics
     public class PlayerController : KinematicObject
     {
         public AudioClip jumpAudio;
-        public AudioClip respawnAudio;
-        public AudioClip ouchAudio;
+        public AudioClip deathAudio;
+        public AudioClip reviveAudio;
+        public AudioClip collectAudio;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -176,6 +177,7 @@ namespace Platformer.Mechanics
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
                 animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+                audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
                 {
