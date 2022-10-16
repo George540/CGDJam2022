@@ -44,10 +44,12 @@ public class GhostController : MonoBehaviour
         if (_movementDirection.x > 0.001f)
         {
             _animator.SetBool(IsRight, true);
+            _isFacingRight = true;
         }
         else if (_movementDirection.x < -0.001f)
         {
             _animator.SetBool(IsRight, false);
+            _isFacingRight = false;
         }
     }
 
@@ -57,5 +59,22 @@ public class GhostController : MonoBehaviour
         _isFacingRight = true;
         _animator.SetBool(IsControllable, _isControllable);
         _animator.SetBool(IsRight, true);
+        //GameManager.Instance.SetItemsVisibility(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Collectible"))
+        {
+            GameManager.Instance.AddKey();
+            Destroy(col.gameObject);
+            Debug.Log("Collected Key");
+            _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+        }
+    }
+    
+    public void CollectItem()
+    {
+        
     }
 }

@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
             _ghostPlayer.transform.parent = null;
-            //SetItemsVisibility(false);
+            SetItemsVisibility(false);
             IsGhost = true;
         }
         else
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             _ghostPlayer.SetActive(false);
 
             _playerController.SetControlled(true);
-            //SetItemsVisibility(true);
+            SetItemsVisibility(true);
             IsGhost = false;
         }
     }
@@ -101,10 +101,17 @@ public class GameManager : MonoBehaviour
         SwitchPlayerState();
     }
 
-    private void SetItemsVisibility(bool isAlive)
+    public void SetItemsVisibility(bool isAlive)
     {
-        _aliveItems.ForEach(i => i.SetActive(isAlive));
-        _ghostItems.ForEach(i => i.SetActive(!isAlive));
+        if (_aliveItems.Count > 0)
+        {
+            _aliveItems.ForEach(i => i.SetActive(isAlive));
+        }
+
+        if (_ghostItems.Count > 0)
+        {
+            _ghostItems.ForEach(i => i.SetActive(!isAlive));
+        }
     }
 
     private void SetCharacterStateCheck(bool isGhost)
