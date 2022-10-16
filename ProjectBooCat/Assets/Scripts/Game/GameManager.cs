@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostPlayer;
     [SerializeField] private GhostController _ghostController;
 
+    public List<GameObject> _ghostBlocks;
     public List<GameObject> _aliveItems;
     public List<GameObject> _ghostItems;
 
@@ -100,6 +101,8 @@ public class GameManager : MonoBehaviour
             if (_playerController.GetComponent<AudioSource>() && _playerController.reviveAudio)
                 _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.reviveAudio);
         }
+        
+        SwitchGhostBlocks();
     }
 
     public void SwitchToGhostState()
@@ -157,5 +160,18 @@ public class GameManager : MonoBehaviour
         _playerController.SetControlled(true);
         SetItemsVisibility(true);
         IsGhost = false;
+        GameManager.Instance.SwitchGhostBlocks();
+    }
+
+    public void SwitchGhostBlocks()
+    {
+        if (IsGhost)
+        {
+            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
+        }
+        else
+        {
+            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
+        }
     }
 }
