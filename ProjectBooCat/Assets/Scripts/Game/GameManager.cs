@@ -17,11 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostPlayer;
     [SerializeField] private GhostController _ghostController;
 
-    [SerializeField] private List<GameObject> _aliveItems;
-    [SerializeField] private List<GameObject> _ghostItems;
+    public List<GameObject> _aliveItems;
+    public List<GameObject> _ghostItems;
 
     public int _keys;
-    
 
     private void Awake() 
     { 
@@ -41,7 +40,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AttachGhostToPlayer();
+        _ghostPlayer.transform.position = _alivePlayer.transform.position;
+        _ghostPlayer.transform.parent = _alivePlayer.transform;
     }
 
     // Update is called once per frame
@@ -75,25 +75,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            AttachGhostToPlayer();
-            _ghostController.enabled = false;
-            _ghostPlayer.SetActive(false);
-
-            _playerController.SetControlled(true);
-            SetItemsVisibility(true);
-            IsGhost = false;
+            _ghostController.Desummon();
         }
-    }
-
-    public void BecomeAlive()
-    {
-        AttachGhostToPlayer();
-        _ghostPlayer.SetActive(false);
-        _ghostController.enabled = false;
-
-        _playerController.enabled = true;
-        //SetItemsVisibility(true);
-        SetCharacterStateCheck(true);
     }
 
     public void SwitchToGhostState()
@@ -134,9 +117,13 @@ public class GameManager : MonoBehaviour
         _keys++;
     }
 
-    private void AttachGhostToPlayer()
+    public void AttachGhostToPlayer()
     {
-        _ghostPlayer.transform.position = _alivePlayer.transform.position;
-        _ghostPlayer.transform.parent = _alivePlayer.transform;
+        _ghostController.enabled = false;
+        _ghostPlayer.SetActive(false);
+
+        _playerController.SetControlled(true);
+        SetItemsVisibility(true);
+        IsGhost = false;
     }
 }

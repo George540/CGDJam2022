@@ -35,6 +35,10 @@ public class GhostController : MonoBehaviour
                 _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
             }
         }
+        else
+        {
+            _movementDirection.x = 0;
+        }
     }
 
     void UpdateDirection()
@@ -67,14 +71,28 @@ public class GhostController : MonoBehaviour
         if (col.gameObject.CompareTag("Collectible"))
         {
             GameManager.Instance.AddKey();
+            if (col.gameObject.layer == 8) // 8 = AliveItems
+            {
+                GameManager.Instance._aliveItems.Remove(col.gameObject);
+            }
+            else if (col.gameObject.layer == 9) // 9 = GhostItems
+            {
+                GameManager.Instance._ghostItems.Remove(col.gameObject);
+            }
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
             _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
         }
     }
-    
-    public void CollectItem()
+
+    public void Desummon()
     {
-        
+        _isControllable = false;
+        _animator.Play("Desummon");
+    }
+
+    public void DisableGhost()
+    {
+        GameManager.Instance.AttachGhostToPlayer();
     }
 }

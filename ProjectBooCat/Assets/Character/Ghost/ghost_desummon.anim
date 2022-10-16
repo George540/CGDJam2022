@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ghost_summon
+  m_Name: ghost_desummon
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1525831005, guid: 36b65af028456d341b199b43496c354b, type: 3}
+      value: {fileID: 2105094461, guid: 36b65af028456d341b199b43496c354b, type: 3}
     - time: 0.16666667
-      value: {fileID: 1765515801, guid: 36b65af028456d341b199b43496c354b, type: 3}
+      value: {fileID: -1652924156, guid: 36b65af028456d341b199b43496c354b, type: 3}
     - time: 0.33333334
       value: {fileID: -1573829325, guid: 36b65af028456d341b199b43496c354b, type: 3}
     - time: 0.5
-      value: {fileID: -1652924156, guid: 36b65af028456d341b199b43496c354b, type: 3}
+      value: {fileID: 1765515801, guid: 36b65af028456d341b199b43496c354b, type: 3}
     - time: 0.6666667
-      value: {fileID: 2105094461, guid: 36b65af028456d341b199b43496c354b, type: 3}
+      value: {fileID: 1525831005, guid: 36b65af028456d341b199b43496c354b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,11 +48,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1525831005, guid: 36b65af028456d341b199b43496c354b, type: 3}
-    - {fileID: 1765515801, guid: 36b65af028456d341b199b43496c354b, type: 3}
-    - {fileID: -1573829325, guid: 36b65af028456d341b199b43496c354b, type: 3}
-    - {fileID: -1652924156, guid: 36b65af028456d341b199b43496c354b, type: 3}
     - {fileID: 2105094461, guid: 36b65af028456d341b199b43496c354b, type: 3}
+    - {fileID: -1652924156, guid: 36b65af028456d341b199b43496c354b, type: 3}
+    - {fileID: -1573829325, guid: 36b65af028456d341b199b43496c354b, type: 3}
+    - {fileID: 1765515801, guid: 36b65af028456d341b199b43496c354b, type: 3}
+    - {fileID: 1525831005, guid: 36b65af028456d341b199b43496c354b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -79,7 +79,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6666667
-    functionName: ActivateMovement
+    functionName: DisableGhost
     data: 
     objectReferenceParameter: {fileID: 5920730425688697359, guid: 992391e15b47bec48a01513c55c6f721,
       type: 3}
