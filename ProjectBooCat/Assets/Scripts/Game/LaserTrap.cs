@@ -32,17 +32,15 @@ public class LaserTrap : MonoBehaviour
 
     private void Update()
     {
-        if (hitPlayer)
-            this.gameObject.SetActive(false);
-    }
-
-    private void FixedUpdate()
-    {
         var transform1 = transform;
         var position = transform1.position;
-        Debug.DrawRay(position, -transform1.up * 10f, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast(position,  -transform.up, 10f);
-        Laser.SetPosition(0, transform.position);
-        Laser.SetPosition(1, hit.transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(position,  -transform1.up, 10f);
+        if (hit)
+        {
+            var size = Mathf.Abs(hit.transform.position.magnitude - position.magnitude);
+            Debug.DrawRay(position, -transform1.up * size, Color.red);
+            Laser.SetPosition(0, position);
+            Laser.SetPosition(1, hit.transform.position);
+        }
     }
 }
