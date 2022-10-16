@@ -399,20 +399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5920730425688697346, guid: 992391e15b47bec48a01513c55c6f721,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5920730425688697359, guid: 992391e15b47bec48a01513c55c6f721,
         type: 3}
       propertyPath: m_Name
       value: GhostCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5920730425688697359, guid: 992391e15b47bec48a01513c55c6f721,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 992391e15b47bec48a01513c55c6f721, type: 3}
