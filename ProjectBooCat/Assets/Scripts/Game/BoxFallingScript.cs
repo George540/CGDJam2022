@@ -12,6 +12,21 @@ public class BoxFallingScript : MonoBehaviour
     [SerializeField] private float NumberOfBoxes;
     [SerializeField] private float SpawnInterval;
     private float currentTime = 0f;
+    public bool hitPlayer;
+    private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
+        hitPlayer = false;
+        Box.gameObject.GetComponent<Box>().SetTrap(this);
+    }
+
+    private void Update()
+    {
+        if(hitPlayer)
+            this.gameObject.SetActive(false);
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {

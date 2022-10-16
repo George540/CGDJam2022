@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
@@ -12,13 +13,19 @@ namespace Platformer.Mechanics
     /// </summary>
     public class DeathZone : MonoBehaviour
     {
+        private GameManager _gameManager;
+
+        private void Start()
+        {
+            _gameManager = GameManager.Instance;
+        }
+
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
             if (p != null)
             {
-                var ev = Schedule<PlayerEnteredDeathZone>();
-                ev.deathzone = this;
+                _gameManager.SwitchToGhostState();
             }
         }
     }
