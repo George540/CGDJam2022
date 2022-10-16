@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             SwitchPlayerState();
         }*/
 
-        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 2f
+        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 0.2f
             && Input.GetKeyDown(KeyCode.E) && IsGhost)
         {
             SwitchPlayerState();
