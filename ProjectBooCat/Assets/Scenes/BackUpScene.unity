@@ -1342,21 +1342,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1930134117}
     m_Modifications:
-    - target: {fileID: 3921799461384994353, guid: 59d372da434956e478b9c7439ffa5611,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4701846299871395227, guid: 59d372da434956e478b9c7439ffa5611,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.109056
-      objectReference: {fileID: 0}
-    - target: {fileID: 4701846299871395227, guid: 59d372da434956e478b9c7439ffa5611,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -1.2378147
-      objectReference: {fileID: 0}
     - target: {fileID: 4701846299871395228, guid: 59d372da434956e478b9c7439ffa5611,
         type: 3}
       propertyPath: m_RootOrder
@@ -9257,7 +9242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 93
+  m_AssetsPPU: 87
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_CropFrame: 0
@@ -9335,7 +9320,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.4596775
+  orthographic size: 1.5603448
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -80825,7 +80810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520396350849616, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4520396350849616, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85462,6 +85447,7 @@ GameObject:
   - component: {fileID: 1892845867}
   - component: {fileID: 1892845869}
   - component: {fileID: 1892845868}
+  - component: {fileID: 1892845870}
   m_Layer: 0
   m_Name: ObjectTileMap
   m_TagString: Untagged
@@ -88061,6 +88047,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1892845870
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892845866}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1930134116
 GameObject:
   m_ObjectHideFlags: 0

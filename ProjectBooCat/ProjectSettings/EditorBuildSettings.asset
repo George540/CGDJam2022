@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/JORDAN Title Screen.unity
+    guid: f04efda53f12a7b429aef1f8186b300d
+  - enabled: 1
+    path: Assets/Scenes/BackUpScene.unity
+    guid: 362723cf463e0d34981aaeb9a8c0ab6b
+  - enabled: 1
+    path: Assets/Scenes/JORDAN FinalCutscene.unity
+    guid: cc15cca62d8c4d845992b76f70078cf8
   m_configObjects: {}

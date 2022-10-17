@@ -6,6 +6,7 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
 {
@@ -200,6 +201,7 @@ namespace Platformer.Mechanics
                 {
                     // Load credits scene
                     Debug.Log("GAME OVER. YOU WIN!");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
                 
                 if (door.isDoorOpen)

@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Platformer.Mechanics;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class DropItem : MonoBehaviour
 {
