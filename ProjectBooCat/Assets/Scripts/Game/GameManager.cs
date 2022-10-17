@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public RoomManager _currentRoom;
     public int _currentRoomId;
 
-    private AudioManager _audioManager;
+    public AudioManager _audioManager;
 
     private void Awake() 
     { 
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         if (!IsGhost)
         {
             _playerController.SetControlled(false);
-            TeleportPlayer();
+            //TeleportPlayer();
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;

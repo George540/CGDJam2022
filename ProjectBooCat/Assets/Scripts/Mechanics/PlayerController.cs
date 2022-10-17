@@ -185,6 +185,11 @@ namespace Platformer.Mechanics
                     GameManager.Instance._currentRoom.OpenDoor();
                 }
             }
+            
+            if (col.gameObject.TryGetComponent<BoxingSpawner>(out var trap))
+            {
+                trap.DropItem();
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
