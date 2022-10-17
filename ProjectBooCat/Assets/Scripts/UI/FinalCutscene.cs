@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FinalCutscene : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FinalCutscene : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] List<Sprite> images;
     [SerializeField] GameObject text;
+    float timeLeft = 64;
 
     // Start is called before the first frame update
     void Start()
@@ -16,32 +18,29 @@ public class FinalCutscene : MonoBehaviour
         StartCoroutine(Cutscene());
     }
 
-   public IEnumerator Cutscene()
-   {
-        // Cutscene
-        background.sprite = images[0];
-        yield return new WaitForSeconds(3);
-        background.sprite = images[1];
-        yield return new WaitForSeconds(2);
-        background.sprite = images[2];
-        yield return new WaitForSeconds(3);
-        background.sprite = images[3];
-        yield return new WaitForSeconds(2);
-        background.sprite = images[4];
-        yield return new WaitForSeconds(2);
-        background.sprite = images[5];
-        yield return new WaitForSeconds(4);
-        background.sprite = images[6];
-        yield return new WaitForSeconds(3);
-        background.sprite = images[7];
-        yield return new WaitForSeconds(4);
-        background.sprite = images[8];
-        yield return new WaitForSeconds(8);
-        background.sprite = images[9];
-        yield return new WaitForSeconds(5);
-        background.sprite = images[8];
+    private void Update()
+    {
+        timeLeft -= Time.deltaTime;
+        if(timeLeft < 0)
+        {
+            // SceneManager.LoadScene("JORDAN Title Screen");
+            Debug.Log("Title screen now");
+        }
+    }
 
-        //Scrolling
+    public IEnumerator Cutscene()
+    {
+        // Cutscene
+        int i = -1;
+        float[] lengths = { 3, 2, 2, 3, 2, 2, 4, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+        foreach (float length in lengths) {
+            background.sprite = images[++i];
+            yield return new WaitForSeconds(length);
+        }
+
+        yield return new WaitForSeconds(5);
+
+        // Scrolling
         text.SetActive(true);
         while (text.transform.position.y != 2760)
         {
