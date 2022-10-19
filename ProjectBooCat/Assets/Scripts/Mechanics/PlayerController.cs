@@ -141,8 +141,8 @@ namespace Platformer.Mechanics
 
         public void SetControlled(bool ctrl)
         {
-            _isAlive = ctrl;
             controlEnabled = ctrl;
+            _isAlive = ctrl;
             if (!ctrl)
             {
                 if (_isFacingRight)

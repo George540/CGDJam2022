@@ -37,12 +37,15 @@ public class GhostController : MonoBehaviour
         }
         else
         {
-            _movementDirection.x = 0;
+            _movementDirection = new Vector2(0.0f, 0.0f);
+            _rigidbody2D.velocity = _movementDirection;
         }
     }
 
     void UpdateDirection()
     {
+        if (!_isControllable) return;
+        
         _animator.SetBool(IsRight, _isFacingRight);
         
         if (_movementDirection.x > 0.001f)

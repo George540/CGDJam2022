@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
 
     public void AttachGhostToPlayer()
     {
+        IsGhost = false;
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _ghostController.enabled = false;
@@ -159,7 +160,6 @@ public class GameManager : MonoBehaviour
 
         _playerController.SetControlled(true);
         SetItemsVisibility(true);
-        IsGhost = false;
         GameManager.Instance.SwitchGhostBlocks();
     }
 
