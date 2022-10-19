@@ -16,10 +16,8 @@ namespace Platformer.Mechanics
     /// </summary>
     public class PlayerController : KinematicObject
     {
-        public AudioClip jumpAudio;
-        public AudioClip deathAudio;
-        public AudioClip reviveAudio;
-        public AudioClip collectAudio;
+        public AudioClip jumpAudio, deathAudio, reviveAudio, keyGet;
+  
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -113,6 +111,7 @@ namespace Platformer.Mechanics
             if (jump && IsGrounded)
             {
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                audioSource.PlayOneShot(jumpAudio);
                 jump = false;
             }
             else if (stopJump)
@@ -179,11 +178,13 @@ namespace Platformer.Mechanics
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
                 animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
-                audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
                 {
                     GameManager.Instance._currentRoom.OpenDoor();
+                } else
+                {
+                    audioSource.PlayOneShot(keyGet);
                 }
             }
             

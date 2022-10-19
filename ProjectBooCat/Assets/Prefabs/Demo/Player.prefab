@@ -56,7 +56,7 @@ MonoBehaviour:
   jumpAudio: {fileID: 8300000, guid: 27b2aca3e2e55484689d9769687159a0, type: 3}
   deathAudio: {fileID: 8300000, guid: f259303e7e81a6048a877f29cea14a68, type: 3}
   reviveAudio: {fileID: 8300000, guid: 11a6af88f74bdbe40970ea2719ec1bcf, type: 3}
-  collectAudio: {fileID: 8300000, guid: 3e88b28737088bf40af6485bbc5be7c6, type: 3}
+  keyGet: {fileID: 8300000, guid: 3e88b28737088bf40af6485bbc5be7c6, type: 3}
   maxSpeed: 1
   jumpTakeOffSpeed: 2
   jumpState: 0

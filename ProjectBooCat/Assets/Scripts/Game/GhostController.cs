@@ -83,10 +83,14 @@ public class GhostController : MonoBehaviour
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
             _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
-            
+
             if (GameManager.Instance._currentRoom._keysToUnlock == 0)
             {
                 GameManager.Instance._currentRoom.OpenDoor();
+            } else
+            {
+                PlayerController player = FindObjectOfType<PlayerController>();
+                player.audioSource.PlayOneShot(player.keyGet);
             }
         }
     }
