@@ -1347,6 +1347,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1930134117}
     m_Modifications:
+    - target: {fileID: 1446762109396252423, guid: 59d372da434956e478b9c7439ffa5611,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446762109396252423, guid: 59d372da434956e478b9c7439ffa5611,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701846299871395227, guid: 59d372da434956e478b9c7439ffa5611,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.1121879
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701846299871395227, guid: 59d372da434956e478b9c7439ffa5611,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -1.2362487
+      objectReference: {fileID: 0}
     - target: {fileID: 4701846299871395228, guid: 59d372da434956e478b9c7439ffa5611,
         type: 3}
       propertyPath: m_RootOrder
@@ -8374,6 +8394,8 @@ MonoBehaviour:
   _currentRoom: {fileID: 876472327}
   _currentRoomId: 0
   _audioManager: {fileID: 0}
+  _sparklePrefab: {fileID: 7669319257633188528, guid: 8cd3ec7ea217ad647a4121802ac2c2de,
+    type: 3}
 --- !u!4 &508802184
 Transform:
   m_ObjectHideFlags: 0
