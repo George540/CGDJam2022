@@ -66,6 +66,7 @@ MonoBehaviour:
   health: {fileID: 0}
   controlEnabled: 1
   _isAlive: 0
+  _sparkleAnimator: {fileID: 0}
 --- !u!212 &212064061491315838
 SpriteRenderer:
   m_ObjectHideFlags: 0

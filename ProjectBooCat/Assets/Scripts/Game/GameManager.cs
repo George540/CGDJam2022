@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public int _currentRoomId;
 
     public AudioManager _audioManager;
+    public GameObject _sparklePrefab;
 
     private void Awake() 
     { 
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(_audioManager.Switch(!IsGhost));
         }
-
+        
         if (!IsGhost)
         {
             _playerController.SetControlled(false);
@@ -87,9 +88,11 @@ public class GameManager : MonoBehaviour
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
+            _ghostController.SwitchAnimatorState(true);
             _ghostPlayer.transform.parent = null;
             SetItemsVisibility(false);
             IsGhost = true;
+            Instantiate(_sparklePrefab, _ghostController.transform.position, Quaternion.identity);
 
             if (_playerController.GetComponent<AudioSource>() && _playerController.deathAudio)
                 _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.deathAudio);
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
         else
         {
             _ghostController.Desummon();
+            Instantiate(_sparklePrefab, _playerController.transform.position, Quaternion.identity);
 
             if (_playerController.GetComponent<AudioSource>() && _playerController.reviveAudio)
                 _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.reviveAudio);

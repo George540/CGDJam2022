@@ -102,6 +102,12 @@ public class GhostController : MonoBehaviour
 
     public void DisableGhost()
     {
+        SwitchAnimatorState(false);
         GameManager.Instance.AttachGhostToPlayer();
+    }
+
+    public void SwitchAnimatorState(bool isActive)
+    {
+        _animator.enabled = isActive;
     }
 }

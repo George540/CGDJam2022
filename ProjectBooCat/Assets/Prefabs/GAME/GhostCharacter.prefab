@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5920730425688697357}
   _animator: {fileID: 1898766519}
+  _sparkleAnimator: {fileID: 0}
   _acceleration: 30
   _maxSpeed: 10
 --- !u!50 &5920730425688697357
