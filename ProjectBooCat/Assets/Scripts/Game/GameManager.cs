@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         if (_audioManager)
         {
             StartCoroutine(_audioManager.Switch(!IsGhost));
+            FindObjectOfType<StatusBar>().UpdateStatus(!IsGhost);
         }
 
         if (!IsGhost)
