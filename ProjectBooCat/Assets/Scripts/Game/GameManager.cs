@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveToOtherRoom()
     {
+        _currentRoom.LeaveRoom();
         _currentRoomId++;
         _currentRoom = _rooms[_currentRoomId];
         _currentRoom.MoveCamera();

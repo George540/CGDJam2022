@@ -28,7 +28,7 @@ public class RoomManager : MonoBehaviour
         if (isTerminal) return;
         
         _doorAnimator.Play("Door Open");
-        FindObjectOfType<AudioManager>().OpenDoor();
+        GameManager.Instance._audioManager.OpenDoor();
         isDoorOpen = true;
     }
 
@@ -36,6 +36,10 @@ public class RoomManager : MonoBehaviour
     {
         if (Camera.main is not null) Camera.main.transform.position = cameraTransform.position;
     }
-    
-    
+
+    public void LeaveRoom()
+    {
+        _doorAnimator.Play("Door Close");
+        GameManager.Instance._audioManager.OpenDoor();
+    }
 }
