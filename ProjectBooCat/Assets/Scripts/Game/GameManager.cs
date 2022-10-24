@@ -62,10 +62,23 @@ public class GameManager : MonoBehaviour
             SwitchPlayerState();
         }*/
 
-        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 0.2f
-            && Input.GetKeyDown(KeyCode.E) && IsGhost)
+        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 0.2f)
         {
-            SwitchPlayerState();
+            if (IsGhost)
+            {
+                _playerController.AnimateReviveBubble();
+                if (Input.GetKeyDown(KeyCode.E) && IsGhost)
+                {
+                    SwitchPlayerState();
+                }
+            }
+        }
+        else
+        {
+            if (IsGhost)
+            {
+                _playerController.DeactivateReviveBubble();
+            }
         }
 
         if(!_audioManager)
@@ -99,6 +112,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            IsGhost = false;
+            _playerController.DeactivateReviveBubble();
             _ghostController.Desummon();
             Instantiate(_sparklePrefab, _playerController.transform.position, Quaternion.identity);
 
@@ -157,7 +172,6 @@ public class GameManager : MonoBehaviour
 
     public void AttachGhostToPlayer()
     {
-        IsGhost = false;
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _ghostController.enabled = false;
@@ -170,7 +184,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchGhostBlocks()
     {
-        if (IsGhost)
+        if (_ghostPlayer.activeSelf)
         {
             _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
         }

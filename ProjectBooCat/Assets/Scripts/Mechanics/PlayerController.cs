@@ -42,6 +42,8 @@ namespace Platformer.Mechanics
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
+        [SerializeField] private GameObject _bubble;
+        [SerializeField] private Animator _bubbleAnimator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
@@ -207,6 +209,25 @@ namespace Platformer.Mechanics
                     GameManager.Instance.MoveToOtherRoom();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
                 }
+            }
+        }
+
+        public void AnimateReviveBubble()
+        {
+            if (!_bubble.activeSelf)
+            {
+                _bubble.SetActive(true);
+                _bubbleAnimator.enabled = true;
+                _bubbleAnimator.Play("Revive Bubble");
+            }
+        }
+
+        public void DeactivateReviveBubble()
+        {
+            if (_bubble.activeSelf)
+            {
+                _bubbleAnimator.enabled = false;
+                _bubble.SetActive(false);
             }
         }
 
