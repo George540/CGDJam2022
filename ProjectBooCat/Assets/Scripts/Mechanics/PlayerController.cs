@@ -4,6 +4,7 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
@@ -23,6 +24,7 @@ namespace Platformer.Mechanics
         /// Max horizontal speed of the player.
         /// </summary>
         public float maxSpeed = 7;
+
         /// <summary>
         /// Initial jump velocity at the start of a jump.
         /// </summary>
@@ -30,9 +32,14 @@ namespace Platformer.Mechanics
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
+
         public Rigidbody2D _rigidbody2D;
-        /*internal new*/ public Collider2D collider2d;
-        /*internal new*/ public AudioSource audioSource;
+
+        /*internal new*/
+        public Collider2D collider2d;
+
+        /*internal new*/
+        public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
@@ -59,7 +66,7 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            if (controlEnabled)
+            /*if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
@@ -74,8 +81,48 @@ namespace Platformer.Mechanics
             {
                 move.x = 0;
             }
+            */
+
             UpdateJumpState();
             base.Update();
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            if (controlEnabled)
+            {
+                var readValue = context.ReadValue<float>();
+                if (readValue > 0.0f)
+                {
+                    move.x = 1.0f;
+                }
+                else if (readValue < 0.0f)
+                {
+                    move.x = -1.0f;
+                }
+                else
+                {
+                    move.x = 0.0f;
+                }
+            }
+            else
+            {
+                move.x = 0.0f;
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (controlEnabled)
+            {
+                if (jumpState == JumpState.Grounded && context.performed)
+                    jumpState = JumpState.PrepareToJump;
+                else if (context.performed)
+                {
+                    stopJump = true;
+                    Schedule<PlayerStopJump>().player = this;
+                }
+            }
         }
 
         void UpdateJumpState()

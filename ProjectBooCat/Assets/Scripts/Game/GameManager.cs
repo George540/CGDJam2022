@@ -67,10 +67,6 @@ public class GameManager : MonoBehaviour
             if (IsGhost)
             {
                 _playerController.AnimateReviveBubble();
-                if (Input.GetKeyDown(KeyCode.E) && IsGhost)
-                {
-                    SwitchPlayerState();
-                }
             }
         }
         else
@@ -87,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SwitchPlayerState()
+    public void SwitchPlayerState()
     {
         if (_audioManager)
         {
