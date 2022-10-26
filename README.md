@@ -1,3 +1,4 @@
-# CGDJam2022
-Armando
-Poop
+# Quantum Cat-astrophe
+
+Play [here](https://armandorusso.itch.io/quantum-cat-astrophe)!
+
