@@ -11,18 +11,6 @@ public class RoomManager : MonoBehaviour
     public Transform PlayerSpawnTransform;
     public bool isTerminal;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OpenDoor()
     {
         if (isTerminal) return;
@@ -39,6 +27,7 @@ public class RoomManager : MonoBehaviour
 
     public void LeaveRoom()
     {
+        isDoorOpen = false;
         _doorAnimator.Play("Door Close");
         GameManager.Instance._audioManager.OpenDoor();
     }
