@@ -21,7 +21,7 @@ public class FinalCutscene : MonoBehaviour
     private void Update()
     {
         timeLeft -= Time.deltaTime;
-        if(timeLeft < 0)
+        if(timeLeft <= 0)
         {
             // SceneManager.LoadScene("JORDAN Title Screen");
             Debug.Log("Title screen now");
@@ -42,9 +42,9 @@ public class FinalCutscene : MonoBehaviour
 
         // Scrolling
         text.SetActive(true);
-        while (text.transform.position.y != 2760)
+        while (text.transform.position.y != 276)
         {
-            float newY = Mathf.MoveTowards(text.transform.position.y, 2760, 10);
+            float newY = Mathf.MoveTowards(text.transform.position.y, 276, 1);
             text.transform.position = new Vector2(text.transform.position.x, newY);
             yield return new WaitForSeconds(0.025f);
         }
