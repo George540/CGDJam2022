@@ -223,6 +223,7 @@ namespace Platformer.Mechanics
                 {
                     GameManager.Instance._ghostItems.Remove(col.gameObject);
                 }
+                Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
                 animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");

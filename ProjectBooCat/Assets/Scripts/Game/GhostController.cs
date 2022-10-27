@@ -97,6 +97,7 @@ public class GhostController : MonoBehaviour
             {
                 GameManager.Instance._ghostItems.Remove(col.gameObject);
             }
+            Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
             _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
