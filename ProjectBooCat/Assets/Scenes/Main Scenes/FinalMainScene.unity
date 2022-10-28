@@ -17890,7 +17890,12 @@ PrefabInstance:
     - target: {fileID: 6228741206068004812, guid: 8088b58abb22c1e46b974b819235bfec,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 1.3999999
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228741206068004812, guid: 8088b58abb22c1e46b974b819235bfec,
+        type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8088b58abb22c1e46b974b819235bfec, type: 3}
@@ -18046,8 +18051,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 968290999107480625, guid: 982dc7aa79f0f44458f8f570cf0f95b7,
         type: 3}
-      propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
+      propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
       value: 1.4000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 968290999107480625, guid: 982dc7aa79f0f44458f8f570cf0f95b7,
+        type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 968291000137311166, guid: 982dc7aa79f0f44458f8f570cf0f95b7,
         type: 3}
