@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         _keys++;
+        FindObjectOfType<StatusBar>().AddCard();
     }
 
     public void MoveToOtherRoom()
