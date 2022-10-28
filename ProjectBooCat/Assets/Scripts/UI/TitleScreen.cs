@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TitleScreen : MonoBehaviour
 {
     AudioManager audioManager;
-    [SerializeField] GameObject flashingText;
+    [SerializeField] GameObject flashingText, title;
 
     private void Start()
     {
