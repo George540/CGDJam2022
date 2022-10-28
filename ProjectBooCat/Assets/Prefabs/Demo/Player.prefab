@@ -68,8 +68,10 @@ MonoBehaviour:
   health: {fileID: 0}
   controlEnabled: 1
   _isAlive: 0
+  _isFacingRight: 0
   _bubble: {fileID: 5331461007636140314}
   _bubbleAnimator: {fileID: 2315073265656531182}
+  _dustFX: {fileID: 5214883492246854042, guid: 8d6f173a5658a1844b6cefaf2c5d921e, type: 3}
 --- !u!212 &212064061491315838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -358,12 +360,20 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space,/SwitchProControllerHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: fcb6e6ab-b030-4d59-8812-d620938d1a56
-    m_ActionName: Player/Interact[/Keyboard/e,/SwitchProControllerHID/buttonWest]
+    m_ActionId: 712c07e8-8ea2-4abd-962f-6bdb7dbc20cc
+    m_ActionName: Ghost/Interact[/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2a268654-e51c-4df9-900f-61f734439d72
-    m_ActionName: Player/Start[/Keyboard/anyKey,/SwitchProControllerHID/start]
+    m_ActionId: 823c2789-9750-410e-aa91-470b12e35f5e
+    m_ActionName: Ghost/Float[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88e34014-a32d-4a86-b12f-1f96c68d2a7d
+    m_ActionName: Menu/Pause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows1/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4134d45a-1420-47b8-bb13-b903800bd9e7
+    m_ActionName: Menu/Start[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

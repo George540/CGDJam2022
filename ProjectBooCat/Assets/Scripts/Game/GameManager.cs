@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
     public bool IsGhost;
 
     private GameObject spawnPoint;
-    [SerializeField] private GameObject _alivePlayer;
-    [SerializeField] private PlayerController _playerController;
+    public GameObject _alivePlayer;
+    public PlayerController _playerController;
 
-    [SerializeField] private GameObject _ghostPlayer;
-    [SerializeField] private GhostController _ghostController;
+    public GameObject _ghostPlayer;
+    public GhostController _ghostController;
 
     public float _reviveDistance;
     public List<GameObject> _ghostBlocks;

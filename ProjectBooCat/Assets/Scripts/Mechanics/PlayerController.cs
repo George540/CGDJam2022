@@ -45,12 +45,13 @@ namespace Platformer.Mechanics
 
         bool jump;
         public bool _isAlive;
-        private bool _isFacingRight;
+        public bool _isFacingRight;
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
         [SerializeField] private GameObject _bubble;
         [SerializeField] private Animator _bubbleAnimator;
+        [SerializeField] private GameObject _dustFX;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
@@ -116,11 +117,11 @@ namespace Platformer.Mechanics
             if (controlEnabled)
             {
                 if (jumpState == JumpState.Grounded && context.performed)
-                    jumpState = JumpState.PrepareToJump;
-                else if (context.performed)
                 {
+                    jumpState = JumpState.PrepareToJump;
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
+                    Instantiate(_dustFX, transform.position, Quaternion.identity);
                 }
             }
         }
