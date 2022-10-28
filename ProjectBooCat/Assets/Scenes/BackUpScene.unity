@@ -8355,6 +8355,7 @@ MonoBehaviour:
   _playerController: {fileID: 1429108582}
   _ghostPlayer: {fileID: 183168443}
   _ghostController: {fileID: 183168442}
+  _reviveDistance: 0.2
   _ghostBlocks:
   - {fileID: 69065795}
   - {fileID: 1599923095}

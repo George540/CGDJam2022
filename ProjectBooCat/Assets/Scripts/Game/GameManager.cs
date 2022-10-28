@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostPlayer;
     [SerializeField] private GhostController _ghostController;
 
+    public float _reviveDistance;
     public List<GameObject> _ghostBlocks;
     public List<GameObject> _aliveItems;
     public List<GameObject> _ghostItems;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
             SwitchPlayerState();
         }*/
 
-        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 0.2f)
+        if (IsInReviveDistance())
         {
             if (IsGhost)
             {
@@ -81,6 +82,11 @@ public class GameManager : MonoBehaviour
         {
             _audioManager = FindObjectOfType<AudioManager>();
         }
+    }
+
+    public bool IsInReviveDistance()
+    {
+        return Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= _reviveDistance;
     }
 
     public void SwitchPlayerState()

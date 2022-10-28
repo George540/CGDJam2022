@@ -50,7 +50,7 @@ public class GhostController : MonoBehaviour
     
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed && GameManager.Instance.IsGhost)
+        if (context.performed && GameManager.Instance.IsGhost && GameManager.Instance.IsInReviveDistance())
         {
             GameManager.Instance.SwitchPlayerState();
         }
