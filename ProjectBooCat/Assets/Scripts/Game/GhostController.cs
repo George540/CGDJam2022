@@ -54,6 +54,8 @@ public class GhostController : MonoBehaviour
         {
             GameManager.Instance.SwitchPlayerState();
         }
+        
+        // Create another interact statement for laser
     }
 
     void UpdateDirection()

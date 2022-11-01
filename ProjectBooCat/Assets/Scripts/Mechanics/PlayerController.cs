@@ -125,6 +125,11 @@ namespace Platformer.Mechanics
                 }
             }
         }
+        
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            // Interacting with lever
+        }
 
         void UpdateJumpState()
         {
