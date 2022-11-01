@@ -128,7 +128,8 @@ namespace Platformer.Mechanics
         
         public void OnInteract(InputAction.CallbackContext context)
         {
-            // Interacting with lever
+            if(context.performed)
+                GameManager.Instance.IsInRangeOfInteractable();
         }
 
         void UpdateJumpState()

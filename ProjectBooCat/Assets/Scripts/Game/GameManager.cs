@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public AudioManager _audioManager;
     public GameObject _sparklePrefab;
 
+    public bool canPressLever;
+    public bool playerPressLever;
+
     private void Awake() 
     { 
         // If there is an instance, and it's not me, delete myself.
@@ -52,6 +55,8 @@ public class GameManager : MonoBehaviour
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _currentRoom = _rooms[_currentRoomId];
+        canPressLever = false;
+        playerPressLever = false;
     }
 
     // Update is called once per frame
@@ -194,5 +199,13 @@ public class GameManager : MonoBehaviour
         {
             _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
         }
+    }
+
+    public void IsInRangeOfInteractable()
+    {
+        if (canPressLever)
+            playerPressLever = true;
+        else
+            playerPressLever = false;
     }
 }
