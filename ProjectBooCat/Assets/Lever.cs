@@ -13,6 +13,11 @@ public class Lever : MonoBehaviour
     public List<Transform> _laserBeamsSet1;
     public List<Transform> _laserBeamsSet2;
 
+    public Sprite _leverOnSprite;
+    public Sprite _leverOffSprite;
+
+    public Animator _leverAnimator;
+
     private bool leverOnSwitch;
 
     private void Start()
@@ -34,27 +39,29 @@ public class Lever : MonoBehaviour
     {
         // Change sprite of laser generator
         // Change sprite of lever in the ActivateLever function
+        _leverAnimator.Play("LeverTurningOn");
         foreach(var laser in _laserBeamsSet1)
             laser.gameObject.SetActive(true);
         
-        
-        
-        
         foreach(var laser in _laserBeamsSet2)
             laser.gameObject.SetActive(false);
-        leverOnSwitch = false;
         
+        leverOnSwitch = false;
+
         Debug.Log("TurnOnSet1()");
     }
 
     // Turn off set 1, turn on set 2
     private void TurnOnSet2()
     {
+        _leverAnimator.Play("LeverTurningOff");
         foreach(var laser in _laserBeamsSet1)
             laser.gameObject.SetActive(false);
         foreach(var laser in _laserBeamsSet2)
             laser.gameObject.SetActive(true);
+        
         leverOnSwitch = true;
+
         Debug.Log("TurnOnSet2()");
     }
 
