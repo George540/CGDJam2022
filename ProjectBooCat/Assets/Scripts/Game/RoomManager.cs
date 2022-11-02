@@ -11,24 +11,12 @@ public class RoomManager : MonoBehaviour
     public Transform PlayerSpawnTransform;
     public bool isTerminal;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OpenDoor()
     {
         if (isTerminal) return;
         
         _doorAnimator.Play("Door Open");
-        FindObjectOfType<AudioManager>().OpenDoor();
+        GameManager.Instance._audioManager.OpenDoor();
         isDoorOpen = true;
     }
 
@@ -36,6 +24,11 @@ public class RoomManager : MonoBehaviour
     {
         if (Camera.main is not null) Camera.main.transform.position = cameraTransform.position;
     }
-    
-    
+
+    public void LeaveRoom()
+    {
+        isDoorOpen = false;
+        _doorAnimator.Play("Door Close");
+        GameManager.Instance._audioManager.OpenDoor();
+    }
 }

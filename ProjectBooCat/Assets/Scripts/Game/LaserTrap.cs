@@ -18,13 +18,13 @@ public class LaserTrap : MonoBehaviour
         Hit, NotHit
     }
     
-    private HitState CurrentState;
+    //private HitState CurrentState;
 
     private void Awake()
     {
         Points = new List<Vector2>();
         Points.Add(Laser.GetPosition(0));
-        CurrentState = HitState.NotHit;
+        //CurrentState = HitState.NotHit;
         _gameManager = GameManager.Instance;
         hitPlayer = false;
         //LaserSprite.gameObject.GetComponent<Laser>().SetTrap(this);

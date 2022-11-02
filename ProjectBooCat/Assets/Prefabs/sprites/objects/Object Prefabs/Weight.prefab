@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4422150077425302723}
   - component: {fileID: 6125224835806615158}
   - component: {fileID: 5402306126478058563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: fc432ee81e6a9f9498a15a0add1429e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.16}
+  m_Size: {x: 0.1, y: 0.14}
   m_EdgeRadius: 0
 --- !u!114 &5402306126478058563
 MonoBehaviour:
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _droplet: {fileID: 8300000, guid: aefb5eeb40e885a428770b0a08960d68, type: 3}
+  _splashPrefab: {fileID: 7413900624676485289, guid: 64ff2bbfa74951f42a3daddb07afa26e,
+    type: 3}

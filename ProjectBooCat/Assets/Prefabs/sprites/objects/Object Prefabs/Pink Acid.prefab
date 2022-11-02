@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _droplet: {fileID: 8300000, guid: b1118768244098047b72ca1ba62f67e5, type: 3}
+  _splashPrefab: {fileID: 7413900624676485289, guid: 64ff2bbfa74951f42a3daddb07afa26e,
+    type: 3}

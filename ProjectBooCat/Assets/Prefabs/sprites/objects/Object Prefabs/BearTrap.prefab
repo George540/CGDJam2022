@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider2D: {fileID: 7049942889957651660}
+  DisableColliderAfterDeath: 1
 --- !u!114 &5399031621257799751
 MonoBehaviour:
   m_ObjectHideFlags: 0
