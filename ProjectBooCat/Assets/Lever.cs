@@ -9,13 +9,13 @@ public class Lever : MonoBehaviour
     [SerializeField] private GameObject[] _lasersSet1;
 
     [SerializeField] private GameObject[] _lasersSet2;
+    
+    [SerializeField] public Sprite _laserMachineOnSprite;
+    [SerializeField] public Sprite _laserMachineOffSprite;
 
     public List<Transform> _laserBeamsSet1;
     public List<Transform> _laserBeamsSet2;
-
-    public Sprite _leverOnSprite;
-    public Sprite _leverOffSprite;
-
+    
     public Animator _leverAnimator;
 
     private bool leverOnSwitch;
@@ -38,14 +38,25 @@ public class Lever : MonoBehaviour
     private void TurnOnSet1()
     {
         // Change sprite of laser generator
-        // Change sprite of lever in the ActivateLever function
         _leverAnimator.Play("LeverTurningOn");
         foreach(var laser in _laserBeamsSet1)
             laser.gameObject.SetActive(true);
         
         foreach(var laser in _laserBeamsSet2)
             laser.gameObject.SetActive(false);
-        
+
+        foreach (var laser in _lasersSet1)
+        {
+            laser.GetComponent<Animator>().enabled = true;
+            laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOnSprite;
+        }
+
+        foreach (var laser in _lasersSet2)
+        {
+            laser.GetComponent<Animator>().enabled = false;
+            laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOffSprite;
+        }
+
         leverOnSwitch = false;
 
         Debug.Log("TurnOnSet1()");
@@ -59,7 +70,19 @@ public class Lever : MonoBehaviour
             laser.gameObject.SetActive(false);
         foreach(var laser in _laserBeamsSet2)
             laser.gameObject.SetActive(true);
-        
+
+        foreach (var laser in _lasersSet1)
+        {
+            laser.GetComponent<Animator>().enabled = false;
+            laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOffSprite;
+        }
+
+        foreach (var laser in _lasersSet2)
+        {
+            laser.GetComponent<Animator>().enabled = true;
+            laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOnSprite;
+        }
+
         leverOnSwitch = true;
 
         Debug.Log("TurnOnSet2()");

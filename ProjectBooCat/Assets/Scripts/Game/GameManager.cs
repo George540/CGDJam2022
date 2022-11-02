@@ -193,11 +193,11 @@ public class GameManager : MonoBehaviour
     {
         if (_ghostPlayer.activeSelf)
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
+            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
         }
         else
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
+            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
         }
     }
 

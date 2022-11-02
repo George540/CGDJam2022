@@ -127,10 +127,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lasersSet1: []
   _lasersSet2: []
+  _laserMachineOnSprite: {fileID: -1418310043, guid: 378bec7f40285f4449a5665dbfe25ec1,
+    type: 3}
+  _laserMachineOffSprite: {fileID: 21300000, guid: bc5eb24ed5b2d484ab0fedc5347d65a2,
+    type: 3}
   _laserBeamsSet1: []
   _laserBeamsSet2: []
-  _leverOnSprite: {fileID: 0}
-  _leverOffSprite: {fileID: 0}
   _leverAnimator: {fileID: 2392776198969417893}
 --- !u!95 &2392776198969417893
 Animator:
