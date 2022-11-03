@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,19 @@ public class RoomManager : MonoBehaviour
     public Transform cameraTransform;
     public Transform PlayerSpawnTransform;
     public bool isTerminal;
+    public bool isStartDoor;
+
+    private void Start()
+    {
+        if (_keysToUnlock == 0)
+        {
+            OpenDoor();
+        }
+    }
 
     public void OpenDoor()
     {
-        if (isTerminal) return;
+        if (isTerminal || isDoorOpen) return;
         
         _doorAnimator.Play("Door Open");
         GameManager.Instance._audioManager.OpenDoor();
@@ -27,6 +37,8 @@ public class RoomManager : MonoBehaviour
 
     public void LeaveRoom()
     {
+        if (!isDoorOpen) return;
+        
         isDoorOpen = false;
         _doorAnimator.Play("Door Close");
         GameManager.Instance._audioManager.OpenDoor();
