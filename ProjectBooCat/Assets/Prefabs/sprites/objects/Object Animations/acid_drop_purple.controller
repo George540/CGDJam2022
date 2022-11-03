@@ -29,7 +29,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PinkAcidDropAnim
+  m_Name: PurpleAcidDropAnim
   m_Speed: 5
   m_CycleOffset: 0
   m_Transitions: []
@@ -42,7 +42,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ed6ca80facd429c40a32b3b974a6592b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6da63601d3b980b4d898f9a426dc9c46, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -54,7 +54,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: acid_drop_0 (1)
+  m_Name: acid_drop_purple
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

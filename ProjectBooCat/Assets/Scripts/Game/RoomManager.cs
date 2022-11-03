@@ -32,7 +32,7 @@ public class RoomManager : MonoBehaviour
 
     public void MoveCamera()
     {
-        if (Camera.main is not null) Camera.main.transform.position = cameraTransform.position;
+        if (Camera.main is not null){ Camera.main.transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, Camera.main.transform.position.z);}
     }
 
     public void LeaveRoom()
