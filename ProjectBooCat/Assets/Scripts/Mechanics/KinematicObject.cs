@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -165,7 +165,7 @@ namespace Platformer.Mechanics
                         //velocity.y = Mathf.Min(velocity.y, 0);
                     }
                     //remove shellDistance from actual move distance.
-                    if (velocity.y <= 0 || !hitBuffer[i].rigidbody.GetComponent<PlatformEffector2D>())
+                    if (!(velocity.y > 0 && hitBuffer[i].rigidbody && hitBuffer[i].rigidbody.GetComponent<PlatformEffector2D>()))
                     {
                         var modifiedDistance = hitBuffer[i].distance - shellRadius;
                         distance = modifiedDistance < distance ? modifiedDistance : distance;

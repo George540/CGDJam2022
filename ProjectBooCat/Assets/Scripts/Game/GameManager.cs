@@ -193,11 +193,19 @@ public class GameManager : MonoBehaviour
     {
         if (_ghostPlayer.activeSelf)
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
+            foreach (var block in _ghostBlocks)
+            {
+                block.GetComponent<Animator>().Play("GhostBlockAlive");
+                block.GetComponent<Collider2D>().enabled = true;
+            }
         }
         else
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
+            foreach (var block in _ghostBlocks)
+            {
+                block.GetComponent<Animator>().Play("GhostBlock");
+                block.GetComponent<Collider2D>().enabled = false;
+            }
         }
     }
 

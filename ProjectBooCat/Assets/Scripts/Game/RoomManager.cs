@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    [Header("Gate Properties")]
     public int _keysToUnlock;
     public Animator _doorAnimator;
     public bool isDoorOpen;
-    public Transform cameraTransform;
-    public Transform PlayerSpawnTransform;
     public bool isTerminal;
     public bool isStartDoor;
+    
+    [Header("Room Properties")]
+    public Transform cameraTransform;
+    public Transform PlayerSpawnTransform;
+    public Door _smallDoor;
 
     private void Start()
     {
@@ -28,6 +32,14 @@ public class RoomManager : MonoBehaviour
         _doorAnimator.Play("Door Open");
         GameManager.Instance._audioManager.OpenDoor();
         isDoorOpen = true;
+    }
+
+    public void OpenSmallDoor()
+    {
+        if (_smallDoor._keysToUnlock == 0)
+        {
+            _smallDoor.OpenDoor();
+        }
     }
 
     public void MoveCamera()
