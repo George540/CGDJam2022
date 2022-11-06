@@ -13,16 +13,19 @@ public class Lever : MonoBehaviour
     [SerializeField] public Sprite _laserMachineOnSprite;
     [SerializeField] public Sprite _laserMachineOffSprite;
 
-    public List<Transform> _laserBeamsSet1;
-    public List<Transform> _laserBeamsSet2;
+    private List<Transform> _laserBeamsSet1;
+    private List<Transform> _laserBeamsSet2;
     
     public Animator _leverAnimator;
 
     private bool leverOnSwitch;
+    private bool isStandingNearLever;
 
     private void Start()
     {
         leverOnSwitch = false;
+        _laserBeamsSet1 = new List<Transform>(_lasersSet1.Length);
+        _laserBeamsSet2 = new List<Transform>(_lasersSet2.Length);
         
         foreach(var laser in _lasersSet1)
             _laserBeamsSet1.Add(laser.transform.GetChild(0));
@@ -31,7 +34,7 @@ public class Lever : MonoBehaviour
             _laserBeamsSet2.Add(laser.transform.GetChild(0));
         
         // By default, set 2 laser beams should be disabled on start
-        TurnOnSet1();
+        // TurnOnSet1();
     }
 
     // Turn on set 1, turn off set 2
@@ -103,12 +106,16 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.Instance.canPressLever = true;
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.canPressLever = true;
+            isStandingNearLever = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (GameManager.Instance.playerPressLever)
+        if (GameManager.Instance.playerPressLever && isStandingNearLever)
         {
             ActivateLever();
             GameManager.Instance.playerPressLever = false;
@@ -117,6 +124,10 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        GameManager.Instance.canPressLever = false;
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.canPressLever = false;
+            isStandingNearLever = false;
+        }
     }
 }

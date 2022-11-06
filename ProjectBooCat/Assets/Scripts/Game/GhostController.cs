@@ -52,12 +52,14 @@ public class GhostController : MonoBehaviour
     
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed && GameManager.Instance.IsGhost && GameManager.Instance.IsInReviveDistance())
+        if(context.performed)
         {
-            GameManager.Instance.SwitchPlayerState();
+            GameManager.Instance.IsInRangeOfInteractable();
+            if (GameManager.Instance.IsGhost && GameManager.Instance.IsInReviveDistance())
+            {
+                GameManager.Instance.SwitchPlayerState();
+            }
         }
-        
-        // Create another interact statement for laser
     }
 
     void UpdateDirection()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 801255273486235053}
   - component: {fileID: 801255273486234962}
   - component: {fileID: 2392776198969417893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ Animator:
   m_GameObject: {fileID: 801255273486234963}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 230079a01d2f3ca4682ffe8d71bbf94d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2a1f8a4be44db2643b4d20e65ea60193, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

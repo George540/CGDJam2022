@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3098064524576750630}
   - component: {fileID: 6527005965148035125}
   - component: {fileID: -7885455332869620230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: door_end_closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,8 @@ MonoBehaviour:
   _keysToUnlock: 0
   _doorAnimator: {fileID: 6527005965148035125}
   isDoorOpen: 0
-  cameraTransform: {fileID: 0}
-  PlayerSpawnTransform: {fileID: 0}
   isTerminal: 0
   isStartDoor: 0
+  cameraTransform: {fileID: 0}
+  PlayerSpawnTransform: {fileID: 0}
+  _smallDoor: {fileID: 0}
