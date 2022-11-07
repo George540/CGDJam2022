@@ -11,10 +11,12 @@ public class LaserHitbox : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.gameObject.TryGetComponent<PlayerController>(out var player))
         {
             GameManager.Instance._alivePlayer.transform.position = _spawnPoint.transform.position;
             GameManager.Instance.SwitchToGhostState();
+            GameManager.Instance._audioManager.Play(player.laserHit);
+            player.SpawnSparkleVFX();
         }
     }
 }

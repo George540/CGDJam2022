@@ -19,6 +19,7 @@ namespace Platformer.Mechanics
         public AudioClip deathAudio;
         public AudioClip reviveAudio;
         public AudioClip collectAudio;
+        public AudioClip laserHit;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -302,6 +303,11 @@ namespace Platformer.Mechanics
                 _bubbleAnimator.enabled = false;
                 _bubble.SetActive(false);
             }
+        }
+
+        public void SpawnSparkleVFX()
+        {
+            Instantiate(GameManager.Instance._sparklePrefab, transform.position, Quaternion.identity);
         }
 
         public enum JumpState

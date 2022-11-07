@@ -59,6 +59,7 @@ MonoBehaviour:
   deathAudio: {fileID: 8300000, guid: f259303e7e81a6048a877f29cea14a68, type: 3}
   reviveAudio: {fileID: 8300000, guid: 11a6af88f74bdbe40970ea2719ec1bcf, type: 3}
   collectAudio: {fileID: 8300000, guid: 3e88b28737088bf40af6485bbc5be7c6, type: 3}
+  laserHit: {fileID: 8300000, guid: ebc88951e38b78443906b2236767be1f, type: 3}
   maxSpeed: 1
   jumpTakeOffSpeed: 2
   jumpState: 0
@@ -67,8 +68,9 @@ MonoBehaviour:
   audioSource: {fileID: 8509783501685719824}
   health: {fileID: 0}
   controlEnabled: 1
-  _isAlive: 0
+  _isAlive: 1
   _isFacingRight: 0
+  move: {x: 0, y: 0}
   _bubble: {fileID: 5331461007636140314}
   _bubbleAnimator: {fileID: 2315073265656531182}
   _dustFX: {fileID: 5214883492246854042, guid: 8d6f173a5658a1844b6cefaf2c5d921e, type: 3}
@@ -112,7 +114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1907945055
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 10eb4adbcff0cae41b0c4f57033463a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
