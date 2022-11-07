@@ -46,7 +46,7 @@ namespace Platformer.Mechanics
         bool jump;
         public bool _isAlive;
         public bool _isFacingRight;
-        Vector2 move;
+        public Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
         [SerializeField] private GameObject _bubble;
@@ -90,7 +90,13 @@ namespace Platformer.Mechanics
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            if (controlEnabled)
+            if (!controlEnabled && !_isAlive)
+            {
+                move.x = 0.0f;
+                return;
+            }
+            
+            if (controlEnabled && _isAlive)
             {
                 var readValue = context.ReadValue<float>();
                 if (readValue > 0.0f)
@@ -197,6 +203,7 @@ namespace Platformer.Mechanics
         {
             controlEnabled = ctrl;
             _isAlive = ctrl;
+            move.x = 0.0f;
             if (!ctrl)
             {
                 if (_isFacingRight)
