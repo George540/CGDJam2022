@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1015751128503383041}
   - component: {fileID: 7049942889957651660}
   - component: {fileID: 1981209863390102697}
-  - component: {fileID: 5399031621257799751}
   - component: {fileID: -3233896885407027902}
   m_Layer: 0
   m_Name: BearTrap
@@ -148,19 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider2D: {fileID: 7049942889957651660}
---- !u!114 &5399031621257799751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2418525168391744917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13208084c8ac0fa4b850842973e7a728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _animator: {fileID: 1015751128503383041}
+  _audioSource: {fileID: -3233896885407027902}
+  _bearTrap: {fileID: 8300000, guid: 177f82092d80f13419fbc6ae3fb366df, type: 3}
+  _bearTrapOpen: {fileID: 8300000, guid: c28f0b0e597de3141abb4c78cc3868f7, type: 3}
+  _openTimer: 7
+  _isClosed: 0
 --- !u!82 &-3233896885407027902
 AudioSource:
   m_ObjectHideFlags: 0
