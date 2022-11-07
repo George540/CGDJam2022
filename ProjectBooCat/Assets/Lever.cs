@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,8 +14,8 @@ public class Lever : MonoBehaviour
     [SerializeField] public Sprite _laserMachineOnSprite;
     [SerializeField] public Sprite _laserMachineOffSprite;
 
-    private List<Transform> _laserBeamsSet1;
-    private List<Transform> _laserBeamsSet2;
+    public List<Transform> _laserBeamsSet1;
+    public List<Transform> _laserBeamsSet2;
     
     public Animator _leverAnimator;
 
@@ -78,12 +79,20 @@ public class Lever : MonoBehaviour
         {
             laser.GetComponent<Animator>().enabled = false;
             laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOffSprite;
+            if (laser.GetComponentInChildren<AudioSource>() && laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Stop();
+            }
         }
 
         foreach (var laser in _lasersSet2)
         {
             laser.GetComponent<Animator>().enabled = true;
             laser.GetComponent<SpriteRenderer>().sprite = _laserMachineOnSprite;
+            if (laser.GetComponentInChildren<AudioSource>() && !laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Play();
+            }
         }
 
         leverOnSwitch = true;
@@ -128,6 +137,44 @@ public class Lever : MonoBehaviour
         {
             GameManager.Instance.canPressLever = false;
             isStandingNearLever = false;
+        }
+    }
+
+    public void ActivateLaserSound()
+    {
+        foreach (var laser in _laserBeamsSet1)
+        {
+            if (laser.gameObject.activeSelf && laser.GetComponentInChildren<AudioSource>() && !laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Play();
+            }
+        }
+
+        foreach (var laser in _laserBeamsSet2)
+        {
+            if (laser.gameObject.activeSelf && laser.GetComponentInChildren<AudioSource>() && !laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Play();
+            }
+        }
+    }
+    
+    public void DeactivateLaserSound()
+    {
+        foreach (var laser in _laserBeamsSet1)
+        {
+            if (laser.gameObject.activeSelf && laser.GetComponentInChildren<AudioSource>() && laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Stop();
+            }
+        }
+
+        foreach (var laser in _laserBeamsSet2)
+        {
+            if (laser.gameObject.activeSelf && laser.GetComponentInChildren<AudioSource>() && laser.GetComponentInChildren<AudioSource>().isPlaying)
+            {
+                laser.gameObject.GetComponentInChildren<AudioSource>().Stop();
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public List<RoomManager> _rooms;
     public RoomManager _currentRoom;
     public int _currentRoomId;
+    public List<Lever> _levers;
 
     public AudioManager _audioManager;
     public GameObject _sparklePrefab;
@@ -175,6 +176,20 @@ public class GameManager : MonoBehaviour
         _currentRoomId++;
         _currentRoom = _rooms[_currentRoomId];
         _currentRoom.MoveCamera();
+        if (_currentRoomId == 6)
+        {
+            foreach (var lever in _levers)
+            {
+                lever.ActivateLaserSound();
+            }
+        }
+        else if (_currentRoomId == 7)
+        {
+            foreach (var lever in _levers)
+            {
+                lever.DeactivateLaserSound();
+            }
+        }
     }
 
     public void AttachGhostToPlayer()
