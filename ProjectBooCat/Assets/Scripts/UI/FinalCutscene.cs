@@ -44,7 +44,7 @@ public class FinalCutscene : MonoBehaviour
         text.SetActive(true);
         while (text.transform.position.y != 2760)
         {
-            float newY = Mathf.MoveTowards(text.transform.position.y, 2760, 5);
+            float newY = Mathf.MoveTowards(text.transform.position.y, 2760, 3);
             text.transform.position = new Vector2(text.transform.position.x, newY);
             yield return new WaitForSeconds(0.03f);
         }

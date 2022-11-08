@@ -24,6 +24,7 @@ public class BoxingSpawner : MonoBehaviour
         {
             var drop = Instantiate(_dropItem, _dropPlace.position, Quaternion.identity);
             drop.GetComponent<Rigidbody2D>().simulated = true;
+            GameManager.Instance._audioManager.DropletSound();
         }
         else
         {

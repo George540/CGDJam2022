@@ -189,6 +189,11 @@ public class GameManager : MonoBehaviour
             {
                 lever.DeactivateLaserSound();
             }
+
+            if (_currentRoom.TryGetComponent<AudioSource>(out var audioSource))
+            {
+                audioSource.Play();
+            }
         }
     }
 

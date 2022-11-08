@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3602fe7be24227b478ac31ef42e87a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leverAudio: {fileID: 8300000, guid: 45545c6e2528609488ea4f9f12f56b02, type: 3}
   _lasersSet1: []
   _lasersSet2: []
   _laserMachineOnSprite: {fileID: -1418310043, guid: 378bec7f40285f4449a5665dbfe25ec1,

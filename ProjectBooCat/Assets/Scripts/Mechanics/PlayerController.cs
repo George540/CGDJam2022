@@ -129,6 +129,7 @@ namespace Platformer.Mechanics
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
                     Instantiate(_dustFX, transform.position, Quaternion.identity);
+                    audioSource.PlayOneShot(jumpAudio);
                 }
             }
         }

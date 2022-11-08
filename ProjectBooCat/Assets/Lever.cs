@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    public AudioClip _leverAudio;
     [SerializeField] private GameObject[] _lasersSet1;
 
     [SerializeField] private GameObject[] _lasersSet2;
@@ -111,6 +112,7 @@ public class Lever : MonoBehaviour
                 TurnOnSet2();
                 break;
         }
+        GameManager.Instance._audioManager.Play(_leverAudio);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
