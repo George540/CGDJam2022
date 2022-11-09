@@ -39,6 +39,7 @@ public class RoomManager : MonoBehaviour
         if (_smallDoor._keysToUnlock == 0)
         {
             _smallDoor.OpenDoor();
+            GameManager.Instance._statusBar.UpdateCountdown(_keysToUnlock);
         }
     }
 
@@ -53,6 +54,6 @@ public class RoomManager : MonoBehaviour
         
         isDoorOpen = false;
         _doorAnimator.Play("Door Close");
-        GameManager.Instance._audioManager.OpenDoor();
+        GameManager.Instance._audioManager.CloseDoor();
     }
 }

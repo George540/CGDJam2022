@@ -95,12 +95,15 @@ public class GhostController : MonoBehaviour
         {
             GameManager.Instance.AddKey();
             GameManager.Instance._currentRoom._keysToUnlock--;
+            int keys = GameManager.Instance._currentRoom._keysToUnlock;
             if (GameManager.Instance._currentRoom._smallDoor &&
                 GameManager.Instance._currentRoom._smallDoor._keysToUnlock > 0)
             {
                 GameManager.Instance._currentRoom._smallDoor._keysToUnlock--;
+                keys = GameManager.Instance._currentRoom._smallDoor._keysToUnlock;
             }
-            
+            GameManager.Instance._statusBar.UpdateCountdown(keys);
+
             if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
             {
                 GameManager.Instance._aliveItems.Remove(col.gameObject);
@@ -113,7 +116,7 @@ public class GhostController : MonoBehaviour
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
             _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
-            _audioSource.PlayOneShot(_collectAudio);
+            if (keys != 0) _audioSource.PlayOneShot(_collectAudio);
 
             if (GameManager.Instance._currentRoom._keysToUnlock == 0)
             {

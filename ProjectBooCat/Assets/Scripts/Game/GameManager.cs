@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         _keys++;
-        if (_statusBar) _statusBar.AddCard();
     }
 
     public void MoveToOtherRoom()
@@ -184,6 +183,15 @@ public class GameManager : MonoBehaviour
         _currentRoomId++;
         _currentRoom = _rooms[_currentRoomId];
         _currentRoom.MoveCamera();
+
+        int keys = _currentRoom._keysToUnlock;
+        if (_currentRoom._smallDoor &&
+            _currentRoom._smallDoor._keysToUnlock > 0)
+        {
+            keys = _currentRoom._smallDoor._keysToUnlock;
+        }
+        _statusBar.UpdateCountdown(keys);
+
         if (_currentRoomId == 6)
         {
             foreach (var lever in _levers)

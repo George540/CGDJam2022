@@ -15,13 +15,13 @@ public class DropItem : MonoBehaviour
             if (other.gameObject.TryGetComponent<PlayerController>(out var player))
             {
                 GameManager.Instance.SwitchToGhostState();
-                GameManager.Instance._audioManager.Play(_droplet);
             }
 
             if (_splashPrefab)
             {
                 SpawnSplash();
             }
+            GameManager.Instance._audioManager.Play(_droplet);
             Destroy(gameObject);
         }
     }

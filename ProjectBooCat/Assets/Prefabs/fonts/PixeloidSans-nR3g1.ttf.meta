@@ -10,9 +10,10 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Pixeloid Sans
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5e14facc12a3c7142b65631614d5b086, type: 3}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

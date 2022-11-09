@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StatusBar : MonoBehaviour
 {
-    [SerializeField] Image status;
-    [SerializeField] Sprite catIndicator, ghostIndicator, card1, card2, card3, card4, card5;
-    [SerializeField] GameObject cardIndicator, end;
-    [SerializeField] Animator anim;
-    int pointer = 0;
+    [SerializeField] Image status, card;
+    [SerializeField] Sprite catIndicator, ghostIndicator, card0, card1, card2, card3;
 
     public void UpdateStatus(bool isGhost)
     {
@@ -17,16 +15,28 @@ public class StatusBar : MonoBehaviour
         else status.sprite = catIndicator;
     }
 
-    public void AddCard()
+    public void UpdateCountdown(int keys)
     {
-        pointer++;
-        anim.SetTrigger("HUDExtend");
-        end.GetComponent<RectTransform>().anchoredPosition = new Vector3(-98 + pointer * 17, 87.5f);
-    }
+        switch (keys) {
+            case 0:
+                card.sprite = card0;
+                break;
 
-    public void RemoveAllCards()
-    {
-        pointer = 0;
-        end.GetComponent<RectTransform>().anchoredPosition = new Vector3(-98, 87.5f);
+            case 1:
+                card.sprite = card1;
+                break;
+
+            case 2:
+                card.sprite = card2;
+                break;
+
+            case 3:
+                card.sprite = card3;
+                break;
+
+            default:
+                Debug.Log("not normal");
+                break;
+        }
     }
 }

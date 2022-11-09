@@ -859,6 +859,7 @@ MonoBehaviour:
   ghostMusic: {fileID: 0}
   gameStart: {fileID: 8300000, guid: 7b6b18afb68625245a62242c9a6d513e, type: 3}
   openDoor: {fileID: 0}
+  dropletAudio: {fileID: 0}
 --- !u!82 &1685761401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1030,7 +1031,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'CODE
 
-    George, Mando, Jordan
+    George, Armando, Jordan
 
 
     ART

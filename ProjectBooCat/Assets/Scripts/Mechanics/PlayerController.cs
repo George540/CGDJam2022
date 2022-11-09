@@ -231,12 +231,15 @@ namespace Platformer.Mechanics
             {
                 GameManager.Instance.AddKey();
                 GameManager.Instance._currentRoom._keysToUnlock--;
+                int keys = GameManager.Instance._currentRoom._keysToUnlock;
                 if (GameManager.Instance._currentRoom._smallDoor &&
                     GameManager.Instance._currentRoom._smallDoor._keysToUnlock > 0)
                 {
                     GameManager.Instance._currentRoom._smallDoor._keysToUnlock--;
+                    keys = GameManager.Instance._currentRoom._smallDoor._keysToUnlock;
                 }
-                
+                GameManager.Instance._statusBar.UpdateCountdown(keys);
+
                 if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
                 {
                     GameManager.Instance._aliveItems.Remove(col.gameObject);
@@ -249,7 +252,7 @@ namespace Platformer.Mechanics
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
                 animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
-                audioSource.PlayOneShot(collectAudio);
+                if (keys != 0) audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
                 {
@@ -282,7 +285,6 @@ namespace Platformer.Mechanics
                 if (door.isDoorOpen)
                 {
                     GameManager.Instance.MoveToOtherRoom();
-                    GameManager.Instance._statusBar.RemoveAllCards();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
                 }
             }
