@@ -23,7 +23,7 @@ public class FinalCutscene : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if(timeLeft < 0)
         {
-            // SceneManager.LoadScene("JORDAN Title Screen");
+            SceneManager.LoadScene("JORDAN Title Screen");
             Debug.Log("Title screen now");
         }
     }

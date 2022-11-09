@@ -28,6 +28,14 @@ public class GameManager : MonoBehaviour
     public int _currentRoomId;
 
     public AudioManager _audioManager;
+<<<<<<< Updated upstream
+=======
+    public StatusBar _statusBar;
+    public GameObject _sparklePrefab;
+
+    public bool canPressLever;
+    public bool playerPressLever;
+>>>>>>> Stashed changes
 
     private void Awake() 
     { 
@@ -50,6 +58,12 @@ public class GameManager : MonoBehaviour
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _currentRoom = _rooms[_currentRoomId];
+<<<<<<< Updated upstream
+=======
+        _statusBar = FindObjectOfType<StatusBar>();
+        canPressLever = false;
+        playerPressLever = false;
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -78,7 +92,11 @@ public class GameManager : MonoBehaviour
         if (_audioManager)
         {
             StartCoroutine(_audioManager.Switch(!IsGhost));
-            FindObjectOfType<StatusBar>().UpdateStatus(!IsGhost);
+        }
+
+        if (_statusBar)
+        {
+            _statusBar.UpdateStatus(!IsGhost);
         }
 
         if (!IsGhost)
@@ -142,7 +160,7 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         _keys++;
-        FindObjectOfType<StatusBar>().AddCard();
+        if (_statusBar) _statusBar.AddCard();
     }
 
     public void MoveToOtherRoom()

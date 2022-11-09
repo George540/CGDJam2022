@@ -21,6 +21,13 @@ public class RoomManager : MonoBehaviour
     void Update()
     {
         
+<<<<<<< Updated upstream
+=======
+        _doorAnimator.Play("Door Open");
+        GameManager.Instance._audioManager.OpenDoor();
+        GameManager.Instance._statusBar.RemoveAllCards();
+        isDoorOpen = true;
+>>>>>>> Stashed changes
     }
 
     public void OpenDoor()
