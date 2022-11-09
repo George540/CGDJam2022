@@ -217,6 +217,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1056609595531333136, guid: 2f6cd03749f072c4ab11165f48e3c317,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1056609595531333146, guid: 2f6cd03749f072c4ab11165f48e3c317,
         type: 3}
       propertyPath: m_Size.x
@@ -3897,6 +3902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Tiles.Array.data[108].second.m_TileObjectToInstantiateIndex
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056609595531333150, guid: 2f6cd03749f072c4ab11165f48e3c317,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1056609595531333150, guid: 2f6cd03749f072c4ab11165f48e3c317,
         type: 3}
@@ -10302,6 +10312,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8767691657238998094, guid: 2e6deb199e6cd434892a004b086f61ff,
         type: 3}
+    - target: {fileID: 7993760626550540865, guid: 9b22aa4e95761ed44804cbeadad206a5,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.9187064
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993760626550540865, guid: 9b22aa4e95761ed44804cbeadad206a5,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -1.3329895
+      objectReference: {fileID: 0}
     - target: {fileID: 7993760626550540870, guid: 9b22aa4e95761ed44804cbeadad206a5,
         type: 3}
       propertyPath: m_RootOrder

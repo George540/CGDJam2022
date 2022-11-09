@@ -9,6 +9,7 @@ public class DropItem : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(other.gameObject.name);
         if (!other.collider.isTrigger)
         {
             if (other.gameObject.TryGetComponent<PlayerController>(out var player))
