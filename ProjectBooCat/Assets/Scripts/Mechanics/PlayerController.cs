@@ -282,6 +282,7 @@ namespace Platformer.Mechanics
                 if (door.isDoorOpen)
                 {
                     GameManager.Instance.MoveToOtherRoom();
+                    GameManager.Instance._statusBar.RemoveAllCards();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
                 }
             }

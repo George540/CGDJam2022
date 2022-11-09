@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public AudioManager _audioManager;
     public GameObject _sparklePrefab;
+    public StatusBar _statusBar;
 
     public bool canPressLever;
     public bool playerPressLever;
@@ -56,8 +57,8 @@ public class GameManager : MonoBehaviour
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _currentRoom = _rooms[_currentRoomId];
-        canPressLever = false;
         playerPressLever = false;
+        canPressLever = false;
     }
 
     // Update is called once per frame
@@ -102,6 +103,12 @@ public class GameManager : MonoBehaviour
             StartCoroutine(_audioManager.Switch(!IsGhost));
         }
         
+
+        if (_statusBar)
+        {
+            _statusBar.UpdateStatus(!IsGhost);
+        }
+
         if (!IsGhost)
         {
             _playerController.SetControlled(false);
@@ -168,6 +175,7 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         _keys++;
+        if (_statusBar) _statusBar.AddCard();
     }
 
     public void MoveToOtherRoom()

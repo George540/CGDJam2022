@@ -42,11 +42,11 @@ public class FinalCutscene : MonoBehaviour
 
         // Scrolling
         text.SetActive(true);
-        while (text.transform.position.y != 2760)
+        while (text.transform.localPosition.y < 1800)
         {
-            float newY = Mathf.MoveTowards(text.transform.position.y, 2760, 3);
-            text.transform.position = new Vector2(text.transform.position.x, newY);
-            yield return new WaitForSeconds(0.03f);
+            float newY = Mathf.MoveTowards(text.transform.localPosition.y, 1800, 10);
+            text.transform.localPosition = new Vector2(text.transform.localPosition.x, newY);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 }
