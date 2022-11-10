@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Animals
+    uniqueID: 1214105525
+    locked: 0
