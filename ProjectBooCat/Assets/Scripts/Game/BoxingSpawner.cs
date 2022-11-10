@@ -17,8 +17,8 @@ public class BoxingSpawner : MonoBehaviour
 
         if (_fakeCollider)
         {
-            _fakeCollider.SetActive(false);
             _fakeCollider.GetComponent<Collider2D>().enabled = false;
+            _fakeCollider.SetActive(false);
         }
         if (!isWeightTrap)
         {

@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Platformer.Mechanics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GhostController : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _collectAudio;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _acceleration;
@@ -26,8 +29,8 @@ public class GhostController : MonoBehaviour
     {
         if (_isControllable)
         {
-            _movementDirection.x = Input.GetAxis("Horizontal");
-            _movementDirection.y = Input.GetAxis("Vertical");
+            //_movementDirection.x = Input.GetAxis("Horizontal");
+            //_movementDirection.y = Input.GetAxis("Vertical");
             _rigidbody2D.AddForce(_movementDirection * _acceleration * Time.deltaTime);
 
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)
@@ -37,12 +40,32 @@ public class GhostController : MonoBehaviour
         }
         else
         {
-            _movementDirection.x = 0;
+            _movementDirection = new Vector2(0.0f, 0.0f);
+            _rigidbody2D.velocity = _movementDirection;
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _movementDirection = context.ReadValue<Vector2>();
+    }
+    
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            GameManager.Instance.IsInRangeOfInteractable();
+            if (GameManager.Instance.IsGhost && GameManager.Instance.IsInReviveDistance())
+            {
+                GameManager.Instance.SwitchPlayerState();
+            }
         }
     }
 
     void UpdateDirection()
     {
+        if (!_isControllable) return;
+        
         _animator.SetBool(IsRight, _isFacingRight);
         
         if (_movementDirection.x > 0.001f)
@@ -72,6 +95,15 @@ public class GhostController : MonoBehaviour
         {
             GameManager.Instance.AddKey();
             GameManager.Instance._currentRoom._keysToUnlock--;
+            int keys = GameManager.Instance._currentRoom._keysToUnlock;
+            if (GameManager.Instance._currentRoom._smallDoor &&
+                GameManager.Instance._currentRoom._smallDoor._keysToUnlock > 0)
+            {
+                GameManager.Instance._currentRoom._smallDoor._keysToUnlock--;
+                keys = GameManager.Instance._currentRoom._smallDoor._keysToUnlock;
+            }
+            GameManager.Instance._statusBar.UpdateCountdown(keys);
+
             if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
             {
                 GameManager.Instance._aliveItems.Remove(col.gameObject);
@@ -80,9 +112,11 @@ public class GhostController : MonoBehaviour
             {
                 GameManager.Instance._ghostItems.Remove(col.gameObject);
             }
+            Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
-            _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+            PlayCollectAnimation();
+            if (keys != 0) _audioSource.PlayOneShot(_collectAudio);
 
             if (GameManager.Instance._currentRoom._keysToUnlock == 0)
             {
@@ -92,7 +126,17 @@ public class GhostController : MonoBehaviour
                 PlayerController player = FindObjectOfType<PlayerController>();
                 player.audioSource.PlayOneShot(player.keyGet);
             }
+
+            if (GameManager.Instance._currentRoom._smallDoor)
+            {
+                GameManager.Instance._currentRoom.OpenSmallDoor();
+            }
         }
+    }
+
+    public void PlayCollectAnimation()
+    {
+        _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
     }
 
     public void Desummon()
@@ -103,6 +147,12 @@ public class GhostController : MonoBehaviour
 
     public void DisableGhost()
     {
+        SwitchAnimatorState(false);
         GameManager.Instance.AttachGhostToPlayer();
+    }
+
+    public void SwitchAnimatorState(bool isActive)
+    {
+        _animator.enabled = isActive;
     }
 }

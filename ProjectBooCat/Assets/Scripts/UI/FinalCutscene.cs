@@ -23,8 +23,8 @@ public class FinalCutscene : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0)
         {
-            // SceneManager.LoadScene("JORDAN Title Screen");
             Debug.Log("Title screen now");
+            SceneManager.LoadScene("JORDAN Title Screen");
         }
     }
 
@@ -38,14 +38,14 @@ public class FinalCutscene : MonoBehaviour
             yield return new WaitForSeconds(length);
         }
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10.0f);
 
         // Scrolling
         text.SetActive(true);
-        while (text.transform.position.y != 276)
+        while (text.transform.localPosition.y < 1800)
         {
-            float newY = Mathf.MoveTowards(text.transform.position.y, 276, 1);
-            text.transform.position = new Vector2(text.transform.position.x, newY);
+            float newY = Mathf.MoveTowards(text.transform.localPosition.y, 1800, 10);
+            text.transform.localPosition = new Vector2(text.transform.localPosition.x, newY);
             yield return new WaitForSeconds(0.025f);
         }
     }

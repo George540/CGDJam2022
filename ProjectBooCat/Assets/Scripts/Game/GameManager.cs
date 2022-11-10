@@ -12,12 +12,13 @@ public class GameManager : MonoBehaviour
     public bool IsGhost;
 
     private GameObject spawnPoint;
-    [SerializeField] private GameObject _alivePlayer;
-    [SerializeField] private PlayerController _playerController;
+    public GameObject _alivePlayer;
+    public PlayerController _playerController;
 
-    [SerializeField] private GameObject _ghostPlayer;
-    [SerializeField] private GhostController _ghostController;
+    public GameObject _ghostPlayer;
+    public GhostController _ghostController;
 
+    public float _reviveDistance;
     public List<GameObject> _ghostBlocks;
     public List<GameObject> _aliveItems;
     public List<GameObject> _ghostItems;
@@ -26,8 +27,14 @@ public class GameManager : MonoBehaviour
     public List<RoomManager> _rooms;
     public RoomManager _currentRoom;
     public int _currentRoomId;
+    public List<Lever> _levers;
 
     public AudioManager _audioManager;
+    public GameObject _sparklePrefab;
+    public StatusBar _statusBar;
+
+    public bool canPressLever;
+    public bool playerPressLever;
 
     private void Awake() 
     { 
@@ -50,6 +57,8 @@ public class GameManager : MonoBehaviour
         _ghostPlayer.transform.position = _alivePlayer.transform.position;
         _ghostPlayer.transform.parent = _alivePlayer.transform;
         _currentRoom = _rooms[_currentRoomId];
+        playerPressLever = false;
+        canPressLever = false;
     }
 
     // Update is called once per frame
@@ -61,10 +70,19 @@ public class GameManager : MonoBehaviour
             SwitchPlayerState();
         }*/
 
-        if (Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= 0.2f
-            && Input.GetKeyDown(KeyCode.E) && IsGhost)
+        if (IsInReviveDistance())
         {
-            SwitchPlayerState();
+            if (IsGhost)
+            {
+                _playerController.AnimateReviveBubble();
+            }
+        }
+        else
+        {
+            if (IsGhost)
+            {
+                _playerController.DeactivateReviveBubble();
+            }
         }
 
         if(!_audioManager)
@@ -73,11 +91,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SwitchPlayerState()
+    public bool IsInReviveDistance()
+    {
+        return Vector3.Distance(_ghostPlayer.transform.position, _alivePlayer.transform.position) <= _reviveDistance;
+    }
+
+    public void SwitchPlayerState()
     {
         if (_audioManager)
         {
             StartCoroutine(_audioManager.Switch(!IsGhost));
+        }
+        
+
+        if (_statusBar)
+        {
+            _statusBar.UpdateStatus(!IsGhost);
         }
 
         if (!IsGhost)
@@ -87,16 +116,21 @@ public class GameManager : MonoBehaviour
             
             _ghostPlayer.SetActive(true);
             _ghostController.enabled = true;
+            _ghostController.SwitchAnimatorState(true);
             _ghostPlayer.transform.parent = null;
             SetItemsVisibility(false);
             IsGhost = true;
+            Instantiate(_sparklePrefab, _ghostController.transform.position, Quaternion.identity);
 
             if (_playerController.GetComponent<AudioSource>() && _playerController.deathAudio)
                 _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.deathAudio);
         }
         else
         {
+            IsGhost = false;
+            _playerController.DeactivateReviveBubble();
             _ghostController.Desummon();
+            Instantiate(_sparklePrefab, _playerController.transform.position, Quaternion.identity);
 
             if (_playerController.GetComponent<AudioSource>() && _playerController.reviveAudio)
                 _playerController.GetComponent<AudioSource>().PlayOneShot(_playerController.reviveAudio);
@@ -145,9 +179,38 @@ public class GameManager : MonoBehaviour
 
     public void MoveToOtherRoom()
     {
+        _currentRoom.LeaveRoom();
         _currentRoomId++;
         _currentRoom = _rooms[_currentRoomId];
         _currentRoom.MoveCamera();
+
+        int keys = _currentRoom._keysToUnlock;
+        if (_currentRoom._smallDoor &&
+            _currentRoom._smallDoor._keysToUnlock > 0)
+        {
+            keys = _currentRoom._smallDoor._keysToUnlock;
+        }
+        _statusBar.UpdateCountdown(keys);
+
+        if (_currentRoomId == 6)
+        {
+            foreach (var lever in _levers)
+            {
+                lever.ActivateLaserSound();
+            }
+        }
+        else if (_currentRoomId == 7)
+        {
+            foreach (var lever in _levers)
+            {
+                lever.DeactivateLaserSound();
+            }
+
+            if (_currentRoom.TryGetComponent<AudioSource>(out var audioSource))
+            {
+                audioSource.Play();
+            }
+        }
     }
 
     public void AttachGhostToPlayer()
@@ -159,19 +222,34 @@ public class GameManager : MonoBehaviour
 
         _playerController.SetControlled(true);
         SetItemsVisibility(true);
-        IsGhost = false;
         GameManager.Instance.SwitchGhostBlocks();
     }
 
     public void SwitchGhostBlocks()
     {
-        if (IsGhost)
+        if (_ghostPlayer.activeSelf)
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlock"));
+            foreach (var block in _ghostBlocks)
+            {
+                block.GetComponent<Animator>().Play("GhostBlockAlive");
+                block.GetComponent<Collider2D>().enabled = true;
+            }
         }
         else
         {
-            _ghostBlocks.ForEach(b => b.GetComponent<Animator>().Play("GhostBlockAlive"));
+            foreach (var block in _ghostBlocks)
+            {
+                block.GetComponent<Animator>().Play("GhostBlock");
+                block.GetComponent<Collider2D>().enabled = false;
+            }
         }
+    }
+
+    public void IsInRangeOfInteractable()
+    {
+        if (canPressLever)
+            playerPressLever = true;
+        else
+            playerPressLever = false;
     }
 }

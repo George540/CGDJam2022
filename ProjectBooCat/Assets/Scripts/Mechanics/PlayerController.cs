@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
@@ -16,13 +15,17 @@ namespace Platformer.Mechanics
     /// </summary>
     public class PlayerController : KinematicObject
     {
-        public AudioClip jumpAudio, deathAudio, reviveAudio, keyGet;
-  
+        public AudioClip jumpAudio;
+        public AudioClip deathAudio;
+        public AudioClip reviveAudio;
+        public AudioClip collectAudio;
+        public AudioClip laserHit;
 
         /// <summary>
         /// Max horizontal speed of the player.
         /// </summary>
         public float maxSpeed = 7;
+
         /// <summary>
         /// Initial jump velocity at the start of a jump.
         /// </summary>
@@ -30,18 +33,26 @@ namespace Platformer.Mechanics
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
+
         public Rigidbody2D _rigidbody2D;
-        /*internal new*/ public Collider2D collider2d;
-        /*internal new*/ public AudioSource audioSource;
+
+        /*internal new*/
+        public Collider2D collider2d;
+
+        /*internal new*/
+        public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
         bool jump;
         public bool _isAlive;
-        private bool _isFacingRight;
-        Vector2 move;
+        public bool _isFacingRight;
+        public Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
+        [SerializeField] private GameObject _bubble;
+        [SerializeField] private Animator _bubbleAnimator;
+        [SerializeField] private GameObject _dustFX;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
@@ -57,7 +68,7 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            if (controlEnabled)
+            /*if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
@@ -72,8 +83,61 @@ namespace Platformer.Mechanics
             {
                 move.x = 0;
             }
+            */
+
             UpdateJumpState();
             base.Update();
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            if (!controlEnabled && !_isAlive)
+            {
+                move.x = 0.0f;
+                return;
+            }
+            
+            if (controlEnabled && _isAlive)
+            {
+                var readValue = context.ReadValue<float>();
+                if (readValue > 0.0f)
+                {
+                    move.x = 1.0f;
+                }
+                else if (readValue < 0.0f)
+                {
+                    move.x = -1.0f;
+                }
+                else
+                {
+                    move.x = 0.0f;
+                }
+            }
+            else
+            {
+                move.x = 0.0f;
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (controlEnabled)
+            {
+                if (jumpState == JumpState.Grounded && context.performed)
+                {
+                    jumpState = JumpState.PrepareToJump;
+                    stopJump = true;
+                    Schedule<PlayerStopJump>().player = this;
+                    Instantiate(_dustFX, transform.position, Quaternion.identity);
+                    audioSource.PlayOneShot(jumpAudio);
+                }
+            }
+        }
+        
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                GameManager.Instance.IsInRangeOfInteractable();
         }
 
         void UpdateJumpState()
@@ -140,8 +204,9 @@ namespace Platformer.Mechanics
 
         public void SetControlled(bool ctrl)
         {
-            _isAlive = ctrl;
             controlEnabled = ctrl;
+            _isAlive = ctrl;
+            move.x = 0.0f;
             if (!ctrl)
             {
                 if (_isFacingRight)
@@ -167,6 +232,15 @@ namespace Platformer.Mechanics
             {
                 GameManager.Instance.AddKey();
                 GameManager.Instance._currentRoom._keysToUnlock--;
+                int keys = GameManager.Instance._currentRoom._keysToUnlock;
+                if (GameManager.Instance._currentRoom._smallDoor &&
+                    GameManager.Instance._currentRoom._smallDoor._keysToUnlock > 0)
+                {
+                    GameManager.Instance._currentRoom._smallDoor._keysToUnlock--;
+                    keys = GameManager.Instance._currentRoom._smallDoor._keysToUnlock;
+                }
+                GameManager.Instance._statusBar.UpdateCountdown(keys);
+
                 if (col.gameObject.layer == 8 && GameManager.Instance._aliveItems.Count > 0) // 8 = AliveItems
                 {
                     GameManager.Instance._aliveItems.Remove(col.gameObject);
@@ -175,9 +249,11 @@ namespace Platformer.Mechanics
                 {
                     GameManager.Instance._ghostItems.Remove(col.gameObject);
                 }
+                Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
-                animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+                PlayCollectAnimation();
+                if (keys != 0) audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
                 {
@@ -186,12 +262,22 @@ namespace Platformer.Mechanics
                 {
                     audioSource.PlayOneShot(keyGet);
                 }
+                
+                if (GameManager.Instance._currentRoom._smallDoor)
+                {
+                    GameManager.Instance._currentRoom.OpenSmallDoor();
+                }
             }
             
             if (col.gameObject.TryGetComponent<BoxingSpawner>(out var trap))
             {
                 trap.DropItem();
             }
+        }
+
+        public void PlayCollectAnimation()
+        {
+            animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -204,13 +290,36 @@ namespace Platformer.Mechanics
                     Debug.Log("GAME OVER. YOU WIN!");
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
-                
-                if (door.isDoorOpen)
+                else if (door.isDoorOpen)
                 {
                     GameManager.Instance.MoveToOtherRoom();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
                 }
             }
+        }
+
+        public void AnimateReviveBubble()
+        {
+            if (!_bubble.activeSelf)
+            {
+                _bubble.SetActive(true);
+                _bubbleAnimator.enabled = true;
+                _bubbleAnimator.Play("Revive Bubble");
+            }
+        }
+
+        public void DeactivateReviveBubble()
+        {
+            if (_bubble.activeSelf)
+            {
+                _bubbleAnimator.enabled = false;
+                _bubble.SetActive(false);
+            }
+        }
+
+        public void SpawnSparkleVFX()
+        {
+            Instantiate(GameManager.Instance._sparklePrefab, transform.position, Quaternion.identity);
         }
 
         public enum JumpState

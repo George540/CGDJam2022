@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource sfx, aliveMusic, ghostMusic;
-    [SerializeField] AudioClip gameStart, openDoor;
+    [SerializeField] AudioClip gameStart, openDoor, closeDoor, dropletAudio, thunder;
 
     public void Play(AudioClip clip)
     {
@@ -16,12 +16,27 @@ public class AudioManager : MonoBehaviour
 
     public void GameStart()
     {
-        sfx.PlayOneShot(gameStart);
+        Play(gameStart);
     }
 
     public void OpenDoor()
     {
-        sfx.PlayOneShot(openDoor);
+        Play(openDoor);
+    }
+
+    public void CloseDoor()
+    {
+        Play(closeDoor);
+    }
+
+    public void DropletSound()
+    {
+        Play(dropletAudio);
+    }
+
+    public void ThunderClap()
+    {
+        Play(thunder);
     }
 
     public IEnumerator Switch(bool isGhost)

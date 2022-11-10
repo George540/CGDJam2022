@@ -341,3 +341,5 @@ MonoBehaviour:
   ghostMusic: {fileID: 5534809926694360922}
   gameStart: {fileID: 8300000, guid: 7b6b18afb68625245a62242c9a6d513e, type: 3}
   openDoor: {fileID: 8300000, guid: aefb5eeb40e885a428770b0a08960d68, type: 3}
+  closeDoor: {fileID: 8300000, guid: e5982199335c5384e8ba8cadf465f5e6, type: 3}
+  dropletAudio: {fileID: 8300000, guid: b1118768244098047b72ca1ba62f67e5, type: 3}

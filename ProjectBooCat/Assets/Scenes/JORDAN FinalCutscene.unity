@@ -410,7 +410,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.96470594, b: 0.79215693, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.96470594, b: 0.79215693, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -736,7 +736,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.96
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 100
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_RefResolutionX: 256
+  m_RefResolutionY: 192
   m_CropFrame: 0
   m_GridSnapping: 1
   m_UpscaleRT: 0
@@ -859,6 +859,8 @@ MonoBehaviour:
   ghostMusic: {fileID: 0}
   gameStart: {fileID: 8300000, guid: 7b6b18afb68625245a62242c9a6d513e, type: 3}
   openDoor: {fileID: 0}
+  closeDoor: {fileID: 0}
+  dropletAudio: {fileID: 0}
 --- !u!82 &1685761401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1030,7 +1032,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'CODE
 
-    George, Mando, Jordan
+    George, Armando, Jordan
 
 
     ART
@@ -1055,7 +1057,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.96470594, b: 0.79215693, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
