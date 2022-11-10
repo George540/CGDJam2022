@@ -115,7 +115,7 @@ public class GhostController : MonoBehaviour
             Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
             Destroy(col.gameObject);
             Debug.Log("Collected Key");
-            _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+            PlayCollectAnimation();
             if (keys != 0) _audioSource.PlayOneShot(_collectAudio);
 
             if (GameManager.Instance._currentRoom._keysToUnlock == 0)
@@ -128,6 +128,11 @@ public class GhostController : MonoBehaviour
                 GameManager.Instance._currentRoom.OpenSmallDoor();
             }
         }
+    }
+
+    public void PlayCollectAnimation()
+    {
+        _animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
     }
 
     public void Desummon()

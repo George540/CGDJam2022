@@ -1004,6 +1004,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: door_end_closed
       objectReference: {fileID: 0}
+    - target: {fileID: 3098064524576750630, guid: 619b2501b16aac24e836c087e5f8b697,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 6527005965148035125, guid: 619b2501b16aac24e836c087e5f8b697,
         type: 3}
       propertyPath: m_Controller

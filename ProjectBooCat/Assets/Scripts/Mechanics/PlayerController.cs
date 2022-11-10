@@ -251,7 +251,7 @@ namespace Platformer.Mechanics
                 Instantiate(GameManager.Instance._sparklePrefab, col.transform.position, Quaternion.identity);
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
-                animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
+                PlayCollectAnimation();
                 if (keys != 0) audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
@@ -269,6 +269,11 @@ namespace Platformer.Mechanics
             {
                 trap.DropItem();
             }
+        }
+
+        public void PlayCollectAnimation()
+        {
+            animator.Play(_isFacingRight ? "Collect Right" : "Collect Left");
         }
 
         private void OnCollisionEnter2D(Collision2D other)

@@ -112,6 +112,15 @@ public class Lever : MonoBehaviour
                 TurnOnSet2();
                 break;
         }
+
+        if (!GameManager.Instance.IsGhost)
+        {
+            GameManager.Instance._playerController.PlayCollectAnimation();
+        }
+        else
+        {
+            GameManager.Instance._ghostController.PlayCollectAnimation();
+        }
         GameManager.Instance._audioManager.Play(_leverAudio);
     }
 
