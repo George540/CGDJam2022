@@ -260,7 +260,7 @@ namespace Platformer.Mechanics
                     GameManager.Instance._currentRoom.OpenDoor();
                 } else
                 {
-                    audioSource.PlayOneShot(keyGet);
+                    audioSource.PlayOneShot(collectAudio);
                 }
                 
                 if (GameManager.Instance._currentRoom._smallDoor)

@@ -124,7 +124,7 @@ public class GhostController : MonoBehaviour
             } else
             {
                 PlayerController player = FindObjectOfType<PlayerController>();
-                player.audioSource.PlayOneShot(player.keyGet);
+                player.audioSource.PlayOneShot(player.collectAudio);
             }
 
             if (GameManager.Instance._currentRoom._smallDoor)
