@@ -286,8 +286,7 @@ namespace Platformer.Mechanics
                     Debug.Log("GAME OVER. YOU WIN!");
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
-                
-                if (door.isDoorOpen)
+                else if (door.isDoorOpen)
                 {
                     GameManager.Instance.MoveToOtherRoom();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
