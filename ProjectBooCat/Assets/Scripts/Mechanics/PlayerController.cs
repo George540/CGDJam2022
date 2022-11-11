@@ -253,16 +253,16 @@ namespace Platformer.Mechanics
                 Destroy(col.gameObject);
                 Debug.Log("Collected Key");
                 PlayCollectAnimation();
-                if (keys != 0) audioSource.PlayOneShot(collectAudio);
 
                 if (GameManager.Instance._currentRoom._keysToUnlock == 0)
                 {
                     GameManager.Instance._currentRoom.OpenDoor();
-                } else
+                }
+                else
                 {
                     audioSource.PlayOneShot(collectAudio);
                 }
-                
+
                 if (GameManager.Instance._currentRoom._smallDoor)
                 {
                     GameManager.Instance._currentRoom.OpenSmallDoor();
