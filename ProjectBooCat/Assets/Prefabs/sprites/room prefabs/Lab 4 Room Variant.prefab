@@ -1606,7 +1606,7 @@ Tilemap:
       - {fileID: 94162222, guid: 824f2eb32878bff43b94b3ce1174b684, type: 3}
       - {fileID: 939738486, guid: 824f2eb32878bff43b94b3ce1174b684, type: 3}
       - {fileID: 663077873, guid: 824f2eb32878bff43b94b3ce1174b684, type: 3}
-      m_AnimationSpeed: 6.0000005
+      m_AnimationSpeed: 6
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -25, y: -10, z: 0}
