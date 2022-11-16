@@ -1668,7 +1668,7 @@ PrefabInstance:
     - target: {fileID: 8571337268790748164, guid: 03565beeb42cd0748a72b2d4363f9ca2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 6
+      value: 6.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 8571337268790748164, guid: 03565beeb42cd0748a72b2d4363f9ca2,
         type: 3}
@@ -2135,7 +2135,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.9411765
+  orthographic size: 0.96
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11166,6 +11166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.15999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608512095197721934, guid: e6b0439156a31f64cb6d684248563644,
+        type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
+      value: 6.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 6608512095197721934, guid: e6b0439156a31f64cb6d684248563644,
         type: 3}
