@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 102
+  m_AssetsPPU: 100
   m_RefResolutionX: 256
   m_RefResolutionY: 192
   m_CropFrame: 0
@@ -7228,7 +7228,7 @@ PrefabInstance:
     - target: {fileID: 7698691484148612816, guid: b8493f7fa38743c40b6f3e0e6ea5af9a,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 6.0000005
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8742653701016799535, guid: b8493f7fa38743c40b6f3e0e6ea5af9a,
         type: 3}
@@ -11170,7 +11170,7 @@ PrefabInstance:
     - target: {fileID: 6608512095197721934, guid: e6b0439156a31f64cb6d684248563644,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 6.0000005
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6743252786873932266, guid: e6b0439156a31f64cb6d684248563644,
         type: 3}
