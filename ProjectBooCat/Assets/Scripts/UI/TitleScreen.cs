@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
@@ -19,7 +22,9 @@ public class TitleScreen : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (Input.anyKeyDown && timer > 1.5f)
+        if (((Keyboard.current.anyKey.wasPressedThisFrame && Input.GetKeyDown(KeyCode.Escape) && !Keyboard.current.escapeKey.isPressed)
+             || Gamepad.current.allControls.Any(x => x is ButtonControl button && x.IsPressed() && !x.synthetic)) 
+            && timer > 1.5f)
         {
             audioManager.GameStart();
             Debug.Log("Load level 1");
