@@ -7,6 +7,7 @@ public class TitleScreen : MonoBehaviour
 {
     AudioManager audioManager;
     [SerializeField] GameObject flashingText, title;
+    private float timer;
 
     private void Start()
     {
@@ -17,7 +18,8 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        timer += Time.deltaTime;
+        if (Input.anyKeyDown && timer > 1.5f)
         {
             audioManager.GameStart();
             Debug.Log("Load level 1");

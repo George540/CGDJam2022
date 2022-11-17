@@ -353,18 +353,9 @@
             "id": "12f0e50d-8f08-4b65-96fa-78cfc1a71924",
             "actions": [
                 {
-                    "name": "Pause",
+                    "name": "Quit",
                     "type": "Button",
-                    "id": "88e34014-a32d-4a86-b12f-1f96c68d2a7d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Start",
-                    "type": "Button",
-                    "id": "4134d45a-1420-47b8-bb13-b903800bd9e7",
+                    "id": "f92197aa-d801-4af8-9340-828a632e1121",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -374,45 +365,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ba1ec044-0fea-43c6-9755-ab6128972ef3",
+                    "id": "3fb81a68-7e36-4253-bcec-6959d2fe037d",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "48267537-a501-438c-b6a2-d0a47bdd85f9",
+                    "id": "e6e9724c-7345-43ca-8257-9e9d820f9838",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9776bfd7-eb9b-42a0-836a-2c3a3456b00a",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Start",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fa65162c-dae0-49b5-8032-ed7e634159c4",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Start",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
