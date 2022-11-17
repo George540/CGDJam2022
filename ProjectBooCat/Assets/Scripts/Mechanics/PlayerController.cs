@@ -294,6 +294,7 @@ namespace Platformer.Mechanics
                 {
                     GameManager.Instance.MoveToOtherRoom();
                     transform.position = GameManager.Instance._currentRoom.PlayerSpawnTransform.position;
+                    move.x = 0.0f;
                 }
             }
         }
