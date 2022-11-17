@@ -22,7 +22,7 @@ public class TitleScreen : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (((Keyboard.current.anyKey.wasPressedThisFrame && Input.GetKeyDown(KeyCode.Escape) && !Keyboard.current.escapeKey.isPressed)
+        if (((Keyboard.current.anyKey.wasPressedThisFrame && !Input.GetKeyDown(KeyCode.Escape) && !Keyboard.current.escapeKey.isPressed)
              || Gamepad.current.allControls.Any(x => x is ButtonControl button && x.IsPressed() && !x.synthetic)) 
             && timer > 1.5f)
         {
