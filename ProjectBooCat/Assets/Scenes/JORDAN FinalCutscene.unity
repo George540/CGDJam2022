@@ -861,6 +861,7 @@ MonoBehaviour:
   openDoor: {fileID: 0}
   closeDoor: {fileID: 0}
   dropletAudio: {fileID: 0}
+  thunder: {fileID: 0}
 --- !u!82 &1685761401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1045,8 +1046,10 @@ MonoBehaviour:
     Jordan
 
 
-    Made
-    for CGD Jam 2022'
+    Originally
+    Made for
+
+    CGD Jam 2022'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47180921724b3dd4b98493f040c49368, type: 2}
   m_sharedMaterial: {fileID: 4153371742568576576, guid: 47180921724b3dd4b98493f040c49368,
